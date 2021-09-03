@@ -4,22 +4,35 @@
 #include "SpritePrototype.h"
 
 #include <QPoint>
-#include <QSize>
 #include <QQueue>
+#include <QPainter>
 
 class Sprite
 {
 private:
 	int defaultAnimationFrameIndex;
+	int time;
+	BaseSpritePrototype *prototype;
 protected:
 	QPoint position;
 	QSize size;
-	SpritePrototype *prototype;
 	QQueue<AnimationFrame> animationFrames;
+
+	void addAnimationFrames(const QString &animationFrameGroupName);
+	void clearAnimationFrames();
 public:
-	Sprite(SpritePrototype *_prototype, QSize _size = {0, 0}, QPoint _position = { 0, 0 }):
+	Sprite(BaseSpritePrototype *_prototype, QSize _size, QPoint _position = { 0, 0 }):
 		prototype(_prototype), size(_size), position(_position), 
-		animationFrames(), defaultAnimationFrameIndex(0){}
+		animationFrames(), defaultAnimationFrameIndex(0), time(0){}
+
+	Sprite(BaseSpritePrototype *_prototype, QPoint _position = { 0, 0 }) :
+		prototype(_prototype), size(), position(_position),
+		animationFrames(), defaultAnimationFrameIndex(0), time(0)
+	{
+		size = prototype->defaultSize;
+	}
+
+	virtual void render(QPainter painter);
 };
 
 #endif // !GRAPHIC__SPRITE_H

@@ -23,7 +23,7 @@ public:
 	template<class T>
 	bool hasRegistry()
 	{
-		return map.count(typeid(Registry<T>).name());
+		return map.contains(typeid(Registry<T>).name());
 	}
 
 	template<class T>

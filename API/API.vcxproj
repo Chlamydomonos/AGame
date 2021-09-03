@@ -28,6 +28,8 @@
     <QtMoc Include="src\network\SyncObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphic\Sprite.cpp" />
+    <ClCompile Include="src\graphic\SpritePrototype.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainWidget.cpp" />
     <ClCompile Include="src\memory\PacketBuffer.cpp" />

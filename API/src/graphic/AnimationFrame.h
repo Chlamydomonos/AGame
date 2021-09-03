@@ -5,8 +5,8 @@
 
 struct AnimationFrame
 {
-	int time;
 	QPixmap *pixmap;
+	int time;
 };
 
 #endif // !GRAPHIC__ANIMATION_FRAME_H

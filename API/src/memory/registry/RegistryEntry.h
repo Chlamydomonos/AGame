@@ -5,8 +5,13 @@
 
 #include <QString>
 
+class BaseRegistryEntry
+{
+
+};
+
 template<class T>
-class RegistryEntry
+class RegistryEntry : public BaseRegistryEntry
 {
 protected:
 	const QString name;
@@ -14,7 +19,7 @@ public:
 	RegistryEntry(const QString &_name) : name(_name)
 	{
 		if (!AllRegistries::getInstance()->hasRegistry<T>())
-			(new Registry<T>())->addEntry(this);
+			(new Registry<T>())->registerObject(this);
 		else
 			AllRegistries::getInstance()->getRegistry<T>()->addEntry(this);
 	}

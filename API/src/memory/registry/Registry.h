@@ -19,6 +19,7 @@ private:
 public:
 	Registry() : BaseRegistry(), map()
 	{
+		static_assert(std::is_convertible<T*, RegistryEntry<T>*>::value, "Cannot create registry without a registry entry");
 		AllRegistries::getInstance()->addRegistry<T>();
 	}
 
@@ -28,25 +29,25 @@ public:
 			delete i;
 	}
 
-	bool hasEntry(const QString &name)
+	bool hasObject(const QString &name)
 	{
-		return map.count(name);
+		return map.contains(name);
 	}
 
-	RegistryEntry<T> *getEntry(const QString &name)
+	T *get(const QString &name)
 	{
-		if (!hasEntry(name))
+		if (!hasObject(name))
 			return nullptr;
 
 		return map[name];
 	}
 
-	void addEntry(RegistryEntry<T> *entry)
+	void registerObject(T *obj)
 	{
-		if (hasEntry(entry->getName()))
+		if (hasObject(obj->getName()))
 			return;
 
-		map.insert(entry->getName(), entry);
+		map.insert(obj->getName(), obj);
 	}
 };
 
