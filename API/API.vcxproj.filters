@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile" />
+    <None Include="src\README.md" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\MainWidget.ui">
