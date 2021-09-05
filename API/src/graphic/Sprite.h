@@ -1,38 +1,75 @@
 #ifndef GRAPHIC__SPRITE_H
 #define GRAPHIC__SPRITE_H
 
-#include "SpritePrototype.h"
+#include "AnimationFrameGroup.h"
 
+#include <QSet>
 #include <QPoint>
-#include <QQueue>
+#include <QSize>
 #include <QPainter>
+#include <QQueue>
+
+class SpritePrototype;
 
 class Sprite
 {
 private:
-	int defaultAnimationFrameIndex;
-	int time;
-	BaseSpritePrototype *prototype;
-protected:
+	friend class GameMainWidget;
+	friend class SpritePrototype;
+	Sprite *parent;
+	QSet<Sprite *> children;
+	SpritePrototype *prototype;
 	QPoint position;
+	QPoint actualPosition;
 	QSize size;
-	QQueue<AnimationFrame> animationFrames;
+	int zOrder;
+	QQueue<AnimationFrameGroup *> animationFrameGroups;
+	bool visible;
+	int time;
+	AnimationFrame currentFrame;
 
-	void addAnimationFrames(const QString &animationFrameGroupName);
-	void clearAnimationFrames();
+	Sprite(SpritePrototype *_prototype, QSize _size, int _zOrder, QPoint _position = { 0, 0 },
+		Sprite *_parent = nullptr, bool _visible = true);
+
+	~Sprite();
+
+	void render(QPainter *painter);
+
+	bool onMouseHoverStart(bool leftButtonPressed, bool rightButtonPressed);
+	bool onMouseHoverEnd(bool leftButtonPressed, bool rightButtonPressed);
+	bool onMouseButtonPressed(bool isLeft);
+	bool onMouseButtonReleased(bool isLeft);
 public:
-	Sprite(BaseSpritePrototype *_prototype, QSize _size, QPoint _position = { 0, 0 }):
-		prototype(_prototype), size(_size), position(_position), 
-		animationFrames(), defaultAnimationFrameIndex(0), time(0){}
+	QPoint getPosition() const { return position; }
+	QSize getSize() const { return size; }
+	int getZOrder() const { return zOrder; }
+	Sprite *getParent() { return parent; }
+	QSet<Sprite *> &getChildren() { return children; }
+	bool isVisible() { return visible; }
 
-	Sprite(BaseSpritePrototype *_prototype, QPoint _position = { 0, 0 }) :
-		prototype(_prototype), size(), position(_position),
-		animationFrames(), defaultAnimationFrameIndex(0), time(0)
+	void setPosition(const QPoint &position) { this->position = position; }
+	void setSize(const QSize &size) { this->size = size; }
+	void setVisible(bool visible) { this->visible = visible; }
+	void setParent(Sprite *parent);
+	void show() { visible = true; }
+	void hide() { visible = false; }
+
+	struct AnimationFrameGroupInfo
 	{
-		size = prototype->defaultSize;
-	}
+		const QString &name;
+		bool isLoop;
+		bool operator==(const AnimationFrameGroupInfo &other)
+		{
+			return name == other.name && isLoop == other.isLoop;
+		}
+	};
 
-	virtual void render(QPainter painter);
+	void enqueueAnimationFrameGroup(const QString &name, bool isLoop);
+	void enqueueAnimationFrameGroup(AnimationFrameGroupInfo info);
+	void dequeueAnimationFrameGroup();
+
+	bool isAnimationFrameGroupQueueEmpty() { return animationFrameGroups.isEmpty(); }
+    AnimationFrameGroupInfo lastAnimationFrameGroup();
 };
 
 #endif // !GRAPHIC__SPRITE_H

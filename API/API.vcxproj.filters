@@ -23,18 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\graphic\AnimationFrame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\GameMainWidget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\SpritePrototype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\memory\registry\AllRegistries.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -50,10 +38,22 @@
     <ClInclude Include="src\memory\SerializableObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\unit\ClientUnit.h">
+    <ClInclude Include="src\graphic\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\unit\SyncUnit.h">
+    <ClInclude Include="src\graphic\SpritePrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphic\GameMainWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphic\AnimationFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphic\AnimationFrameGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphic\AnimationFrameGroupPrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -70,21 +70,18 @@
     <ClCompile Include="src\MainWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphic\SpritePrototype.cpp">
+    <ClCompile Include="src\graphic\AnimationFrameGroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphic\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphic\SpritePrototype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\network\SyncObject.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="src\unit\ServerUnit.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="src\unit\UnitPrototype.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="src\MainWidget.h">

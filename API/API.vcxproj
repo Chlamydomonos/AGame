@@ -11,23 +11,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="src\MainWidget.h" />
     <ClInclude Include="src\graphic\AnimationFrame.h" />
+    <ClInclude Include="src\graphic\AnimationFrameGroup.h" />
+    <ClInclude Include="src\graphic\AnimationFrameGroupPrototype.h" />
     <ClInclude Include="src\graphic\GameMainWidget.h" />
     <ClInclude Include="src\graphic\Sprite.h" />
     <ClInclude Include="src\graphic\SpritePrototype.h" />
-    <QtMoc Include="src\MainWidget.h" />
     <ClInclude Include="src\memory\PacketBuffer.h" />
     <ClInclude Include="src\memory\registry\AllRegistries.h" />
     <ClInclude Include="src\memory\registry\Registry.h" />
     <ClInclude Include="src\memory\registry\RegistryEntry.h" />
     <ClInclude Include="src\memory\SerializableObject.h" />
-    <ClInclude Include="src\unit\ClientUnit.h" />
-    <ClInclude Include="src\unit\SyncUnit.h" />
-    <QtMoc Include="src\unit\UnitPrototype.h" />
-    <QtMoc Include="src\unit\ServerUnit.h" />
     <QtMoc Include="src\network\SyncObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphic\AnimationFrameGroup.cpp" />
     <ClCompile Include="src\graphic\Sprite.cpp" />
     <ClCompile Include="src\graphic\SpritePrototype.cpp" />
     <ClCompile Include="src\main.cpp" />

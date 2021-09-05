@@ -1,16 +1,13 @@
 #ifndef GRAPHIC__GAME_MAIN_WIDGET_H
 #define GRAPHIC__GAME_MAIN_WIDGET_H
 
-#include <QWidget>
-#include <QSet>
+#include "Sprite.h"
+#include <QMap>
 
-class Sprite;
-
-class GameMainWidget : public QWidget
+class GameMainWidget
 {
 private:
-	QPoint cameraFocus;
-	QSet<Sprite *>sprites;
+	QMap<int, Sprite *> spriteRoots;
 };
 
 #endif // !GRAPHIC__GAME_MAIN_WIDGET_H

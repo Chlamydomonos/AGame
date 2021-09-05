@@ -1,55 +1,57 @@
 #include "SpritePrototype.h"
 
-BaseSpritePrototype::~BaseSpritePrototype()
+SpritePrototype::~SpritePrototype()
 {
-    for (auto i : pixmaps)
-        delete i;
+    delete defaultLoop;
 }
 
-bool BaseSpritePrototype::hasPixmap(const QString &name)
+void SpritePrototype::loadPixmap(const QString &name, const QString &fileName)
+{
+    if (pixmaps.contains(name))
+        return;
+    QPixmap temp(fileName);
+    pixmaps.insert(name, temp);
+}
+
+void SpritePrototype::loadPixmapFromPrototype(const QString &name, SpritePrototype *prototype, const QString &pixmapName)
+{
+    if (pixmaps.contains(name))
+        return;
+    if (!prototype->pixmaps.contains(pixmapName))
+        return;
+    pixmaps.insert(name, prototype->pixmaps[pixmapName]);
+}
+
+bool SpritePrototype::hasPixmap(const QString &name)
 {
     return pixmaps.contains(name);
 }
 
-bool BaseSpritePrototype::hasAnimationFrameGroup(const QString &name)
+QPixmap SpritePrototype::getPixmap(const QString &name)
 {
-    return animationFrameGroups.contains(name);
+    return pixmaps[name];
 }
 
-void BaseSpritePrototype::loadPixmap(const QString &name, const QString &fileName)
+void SpritePrototype::createAnimationFrameGroupPrototype(const QString &name, const QVector<AnimationFrame> &frames)
 {
-    if (hasPixmap(name))
+    if (animationFrameGroupPrototypes.contains(name))
         return;
+    animationFrameGroupPrototypes.insert(name, AnimationFrameGroupPrototype(frames, name));
+}
 
-    QPixmap *temp = new QPixmap(fileName);
-    if(temp->size() == defaultSize)
-        pixmaps.insert(name, temp);
-    else
+bool SpritePrototype::hasAnimationFrameGroupPrototype(const QString &name)
+{
+    return animationFrameGroupPrototypes.contains(name);
+}
+
+void SpritePrototype::setDefaultAnimationFrameLoop(const QString &name)
+{
+    if (!animationFrameGroupPrototypes.contains(name))
+        return;
+    if (defaultLoop != nullptr)
     {
-        QPixmap *temp2 = new QPixmap(temp->scaled(defaultSize));
-        delete temp;
-        pixmaps.insert(name, temp2);
+        delete defaultLoop;
+        defaultLoop = nullptr;
     }
-}
-
-AnimationFrame BaseSpritePrototype::createAnimationFrame(const QString &pixmapName, int time)
-{
-    if (!hasPixmap(pixmapName))
-        return { nullptr, time };
-    return { pixmaps[pixmapName], time };
-}
-
-void BaseSpritePrototype::createAnimationFrameGroup(const QString &name, const QVector<AnimationFrame> &animationFrames)
-{
-    if (hasAnimationFrameGroup(name))
-        return;
-
-    animationFrameGroups.insert(name, animationFrames);
-}
-
-void BaseSpritePrototype::setDefaultAnimationFrameGroup(const QString &name)
-{
-    if (!hasAnimationFrameGroup(name))
-        defaultAnimationFrameGroup = nullptr;
-    defaultAnimationFrameGroup = &(animationFrameGroups[name]);
+    defaultLoop = animationFrameGroupPrototypes[name].createLoop();
 }

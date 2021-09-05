@@ -1,63 +1,57 @@
 #ifndef GRAPHIC__SPRITE_PROTOTYPE_H
 #define GRAPHIC__SPRITE_PROTOTYPE_H
 
-#include "AnimationFrame.h"
+#include "Sprite.h"
+#include "AnimationFrameGroupPrototype.h"
 
-#include <QObject>
 #include <QMap>
-#include <QPixmap>
 #include <QString>
-#include <QVector>
-#include <QSize>
 
-class BaseSpritePrototype
+class SpritePrototype
 {
 private:
-	QMap<QString, QPixmap *> pixmaps;
-	QMap<QString, QVector<AnimationFrame>> animationFrameGroups;
-	QVector<AnimationFrame> *defaultAnimationFrameGroup;
+	QMap<QString, QPixmap> pixmaps;
+	QMap<QString, AnimationFrameGroupPrototype> animationFrameGroupPrototypes;
 	QSize defaultSize;
+	int defaultZOrder;
+	AnimationFrameLoop *defaultLoop;
 	friend class Sprite;
-protected:
-	BaseSpritePrototype(const QSize &_defaultSize) :
-		pixmaps(), animationFrameGroups(),
-		defaultAnimationFrameGroup(nullptr),
-		defaultSize(_defaultSize) {}
+public:
+	SpritePrototype(QSize _defaultSize, int _defaultZOrder = 0):
+		defaultSize(_defaultSize), defaultZOrder(_defaultZOrder), defaultLoop(nullptr) {}
 
-	~BaseSpritePrototype();
-
-	bool hasPixmap(const QString &name);
-	bool hasAnimationFrameGroup(const QString &name);
+	virtual ~SpritePrototype();
 
 	void loadPixmap(const QString &name, const QString &fileName);
-	AnimationFrame createAnimationFrame(const QString &pixmapName, int time);
-	void createAnimationFrameGroup(const QString &name, const QVector<AnimationFrame> &animationFrames);
-	void setDefaultAnimationFrameGroup(const QString &name);
+	void loadPixmapFromPrototype(const QString &name, SpritePrototype *prototype, const QString &pixmapName);
 
-	virtual void onBaseSpriteHover(Sprite *sprite) = 0;
-	virtual void onBaseSpriteClicked(Sprite *sprite) = 0;
+	bool hasPixmap(const QString &name);
+	QPixmap getPixmap(const QString &name);
 
-};
+	void createAnimationFrameGroupPrototype(const QString &name, const QVector<AnimationFrame> &frames);
+	bool hasAnimationFrameGroupPrototype(const QString &name);
 
-template<class T>
-class SpritePrototype : public BaseSpritePrototype
-{
-public:
-	SpritePrototype(const QSize &defaultSize) : BaseSpritePrototype(defaultSize)
+	void setDefaultAnimationFrameLoop(const QString &name);
+
+	Sprite *createSprite(QSize size, int zOrder, QPoint position = { 0, 0 }, Sprite *parent = nullptr)
 	{
-		static_assert(std::is_convertible<T *, Sprite *>, "Cannot create sprite prototype without a sprite class");
+		return new Sprite(this, size, zOrder, position, parent);
 	}
 
-	virtual void onSpriteHover(T *sprite) {}
-	virtual void onSpriteClicked(T *sprite) {}
-	virtual void onBaseSpriteHover(Sprite *sprite) override final
+	Sprite *createSprite(QSize size, QPoint position = { 0, 0 }, Sprite *parent = nullptr)
 	{
-		onSpriteHover(static_cast<T *>(sprite));
+		return new Sprite(this, size, defaultZOrder, position, parent);
 	}
-	virtual void onBaseSpriteClicked(Sprite *sprite) override final
+
+	Sprite *createSprite(QPoint position = { 0, 0 }, Sprite *parent = nullptr)
 	{
-		onSpriteClicked(static_cast<T *>(sprite));
+		return new Sprite(this, defaultSize, defaultZOrder, position, parent);
 	}
+
+	virtual bool onMouseHoverStart(Sprite *sprite, bool leftButtonPressed, bool rightButtonPressed) { return false; }
+	virtual bool onMouseHoverEnd(Sprite *sprite, bool leftButtonPressed, bool rightButtonPressed) { return false; }
+	virtual bool onMouseButtonPressed(Sprite *sprite, bool isLeft) { return false; }
+	virtual bool onMouseButtonReleased(Sprite *sprite, bool isLeft) { return false; }
 };
 
 #endif // !GRAPHIC__SPRITE_PROTOTYPE_H
