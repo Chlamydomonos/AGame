@@ -5,7 +5,11 @@
 
 void Animation::removeSelf()
 {
-    sprite->currentAnimation = sprite->defaultAnimation;
+    if (sprite->currentAnimation != sprite->defaultAnimation)
+    {
+        sprite->currentAnimation = sprite->defaultAnimation;
+        sprite->defaultAnimation->start();
+    }
 }
 
 Animation::Animation(const AnimationPrototype *prototype) :
@@ -22,28 +26,31 @@ int Animation::duration() const
 
 void Animation::updateCurrentTime(int currentTime)
 {
-    currentTime %= duration();
+    if (state() == State::Running)
+    {
+        currentTime %= duration();
 
-    if (currentTime >= prevIndexesTime)
-    {
-        for (int i = currentIndex;; i++)
+        if (currentTime >= prevIndexesTime)
         {
-            int temp = prevIndexesTime + prototype->at(i).getTime();
-            if (temp > currentTime)
+            for (int i = currentIndex;; i++)
             {
-                currentIndex = i;
-                sprite->setPixmap(getPixmap());
-                return;
+                int temp = prevIndexesTime + prototype->at(i).getTime();
+                if (temp > currentTime)
+                {
+                    currentIndex = i;
+                    sprite->setPixmap(getPixmap());
+                    return;
+                }
+                else
+                    prevIndexesTime = temp;
             }
-            else
-                prevIndexesTime = temp;
         }
-    }
-    else
-    {
-        currentIndex = 0;
-        prevIndexesTime = 0;
-        updateCurrentTime(currentTime);
+        else
+        {
+            currentIndex = 0;
+            prevIndexesTime = 0;
+            updateCurrentTime(currentTime);
+        }
     }
 }
 

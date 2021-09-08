@@ -1,6 +1,8 @@
 #include "Sprite.h"
 #include "SpritePrototype.h"
 
+#include "Scene.h"
+
 #include <math.h>
 
 Sprite::Sprite(const SpritePrototype *prototype) : ItemWithPrototype<Sprite, SpritePrototype>(prototype), moveAnimation(nullptr)
@@ -9,6 +11,12 @@ Sprite::Sprite(const SpritePrototype *prototype) : ItemWithPrototype<Sprite, Spr
 	defaultAnimation->bindSprite(this);
 	currentAnimation = defaultAnimation;
 	currentAnimation->start();
+}
+
+void Sprite::defaultMousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+	dynamic_cast<Scene *>(scene())->_mouseGrabber = this;
+	QGraphicsPixmapItem::mousePressEvent(event); 
 }
 
 Sprite::~Sprite()
@@ -63,7 +71,7 @@ void Sprite::startAnimation(const QString &animationName)
 	stopAnimation();
 	defaultAnimation->stop();
 
-	currentAnimation = prototype->animations[animationName].create();
+	currentAnimation = prototype->animations.find(animationName).value().create();
 	currentAnimation->bindSprite(this);
 	currentAnimation->start();
 }

@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\graphic\MoveAnimation.h" />
+    <ClInclude Include="src\graphic\Scene.h" />
     <ClInclude Include="src\util\ItemWithPrototype.h" />
     <ClInclude Include="src\util\Prototype.h" />
     <QtMoc Include="src\MainWidget.h" />
@@ -32,6 +33,7 @@
     <ClCompile Include="src\graphic\Animation.cpp" />
     <ClCompile Include="src\graphic\AnimationPrototype.cpp" />
     <ClCompile Include="src\graphic\MoveAnimation.cpp" />
+    <ClCompile Include="src\graphic\Scene.cpp" />
     <ClCompile Include="src\graphic\Sprite.cpp" />
     <ClCompile Include="src\graphic\SpritePrototype.cpp" />
     <ClCompile Include="src\main.cpp" />
