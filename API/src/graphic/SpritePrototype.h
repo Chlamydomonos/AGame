@@ -28,10 +28,10 @@ protected:
 	void createAnimation(const QString &name, const QVector<AnimationFrame> &frames, int loopCount);
 	void setDefaultAnimation(const QString &name);
 
-	virtual void hoverEnterEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->QGraphicsPixmapItem::hoverEnterEvent(event); }
-	virtual void hoverLeaveEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->QGraphicsPixmapItem::hoverLeaveEvent(event); }
-	virtual void mousePressEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->QGraphicsPixmapItem::mousePressEvent(event); }
-	virtual void mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->QGraphicsPixmapItem::mouseReleaseEvent(event); }
+	virtual void hoverEnterEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->defaultHoverEnterEvent(event); }
+	virtual void hoverLeaveEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->defaultHoverLeaveEvent(event); }
+	virtual void mousePressEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->defaultMousePressEvent(event); }
+	virtual void mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->defaultMouseReleaseEvent(event); }
 
 public:
 	virtual Sprite *create() const override final;

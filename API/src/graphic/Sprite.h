@@ -24,6 +24,11 @@ private:
 	QVariantMap dataMap;
 
 	Sprite(const SpritePrototype *prototype);
+
+	void defaultHoverEnterEvent(QGraphicsSceneHoverEvent *event) { QGraphicsPixmapItem::hoverEnterEvent(event); }
+	void defaultHoverLeaveEvent(QGraphicsSceneHoverEvent *event) { QGraphicsPixmapItem::hoverLeaveEvent(event); }
+	void defaultMousePressEvent(QGraphicsSceneMouseEvent *event) { QGraphicsPixmapItem::mousePressEvent(event); }
+	void defaultMouseReleaseEvent(QGraphicsSceneMouseEvent *event) { QGraphicsPixmapItem::mouseReleaseEvent(event); }
 public:
 	bool inAnimation();
 	const QString &currentAnimationName();
