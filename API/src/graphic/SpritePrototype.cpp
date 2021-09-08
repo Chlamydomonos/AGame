@@ -44,9 +44,9 @@ void SpritePrototype::mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent
 Sprite *SpritePrototype::create() const
 {
 	assert(defaultAnimation != nullptr);
-	Sprite sprite(this);
-	sprite.setZValue(defaultZValue);
-	sprite.setOffset(offset);
-	sprite.setAcceptHoverEvents(true);
-	return nullptr;
+	Sprite *sprite = new Sprite(this);
+	sprite->setZValue(defaultZValue);
+	sprite->setOffset(offset);
+	sprite->setAcceptHoverEvents(true);
+	return sprite;
 }
