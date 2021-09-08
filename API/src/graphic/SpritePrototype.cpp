@@ -33,13 +33,13 @@ void SpritePrototype::setDefaultAnimation(const QString &name)
 	assert(defaultAnimation->getLoopCount() == -1);
 }
 
-inline void SpritePrototype::hoverEnterEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->defaultHoverEnterEvent(event); }
+void SpritePrototype::hoverEnterEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->defaultHoverEnterEvent(event); }
 
-inline void SpritePrototype::hoverLeaveEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->defaultHoverLeaveEvent(event); }
+void SpritePrototype::hoverLeaveEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->defaultHoverLeaveEvent(event); }
 
-inline void SpritePrototype::mousePressEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->defaultMousePressEvent(event); }
+void SpritePrototype::mousePressEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->defaultMousePressEvent(event); }
 
-inline void SpritePrototype::mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->defaultMouseReleaseEvent(event); }
+void SpritePrototype::mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->defaultMouseReleaseEvent(event); }
 
 Sprite *SpritePrototype::create() const
 {
