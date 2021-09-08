@@ -7,6 +7,8 @@
 #include "AnimationPrototype.h"
 #include "Animation.h"
 
+#include <QGraphicsSceneHoverEvent>
+
 class Sprite;
 
 class SpritePrototype : public Prototype<Sprite>
@@ -28,10 +30,10 @@ protected:
 	void createAnimation(const QString &name, const QVector<AnimationFrame> &frames, int loopCount);
 	void setDefaultAnimation(const QString &name);
 
-	virtual void hoverEnterEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->defaultHoverEnterEvent(event); }
-	virtual void hoverLeaveEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->defaultHoverLeaveEvent(event); }
-	virtual void mousePressEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->defaultMousePressEvent(event); }
-	virtual void mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->defaultMouseReleaseEvent(event); }
+	virtual void hoverEnterEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const;
+	virtual void hoverLeaveEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const;
+	virtual void mousePressEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const;
+	virtual void mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const;
 
 public:
 	virtual Sprite *create() const override final;
