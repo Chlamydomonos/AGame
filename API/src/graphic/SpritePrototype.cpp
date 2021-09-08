@@ -1,57 +1,44 @@
 #include "SpritePrototype.h"
+#include "Sprite.h"
 
-SpritePrototype::~SpritePrototype()
+void SpritePrototype::loadPixmap(const QString & name, const QString & fileName)
 {
-    delete defaultLoop;
+	if (pixmaps.contains(name))
+		return;
+	QPixmap map(fileName);
+	pixmaps.insert(name, map);
 }
 
-void SpritePrototype::loadPixmap(const QString &name, const QString &fileName)
+AnimationFrame SpritePrototype::createAnimationFrame(const QString &pixmapName, int time)
 {
-    if (pixmaps.contains(name))
-        return;
-    QPixmap temp(fileName);
-    pixmaps.insert(name, temp);
+	if(!pixmaps.contains(pixmapName))
+		return AnimationFrame();
+	return AnimationFrame(pixmaps[pixmapName], time);
 }
 
-void SpritePrototype::loadPixmapFromPrototype(const QString &name, SpritePrototype *prototype, const QString &pixmapName)
+void SpritePrototype::createAnimation(const QString &name, const QVector<AnimationFrame> &frames, int loopCount)
 {
-    if (pixmaps.contains(name))
-        return;
-    if (!prototype->pixmaps.contains(pixmapName))
-        return;
-    pixmaps.insert(name, prototype->pixmaps[pixmapName]);
+	if (animations.contains(name))
+		return;
+	AnimationPrototype prototype(frames, loopCount);
+	prototype.name = name;
+	animations.insert(name, prototype);
 }
 
-bool SpritePrototype::hasPixmap(const QString &name)
+void SpritePrototype::setDefaultAnimation(const QString &name)
 {
-    return pixmaps.contains(name);
+	if (!animations.contains(name))
+		return;
+	defaultAnimation = &(animations[name]);
+	assert(defaultAnimation->getLoopCount() == -1);
 }
 
-QPixmap SpritePrototype::getPixmap(const QString &name)
+Sprite *SpritePrototype::create() const
 {
-    return pixmaps[name];
-}
-
-void SpritePrototype::createAnimationFrameGroupPrototype(const QString &name, const QVector<AnimationFrame> &frames)
-{
-    if (animationFrameGroupPrototypes.contains(name))
-        return;
-    animationFrameGroupPrototypes.insert(name, AnimationFrameGroupPrototype(frames, name));
-}
-
-bool SpritePrototype::hasAnimationFrameGroupPrototype(const QString &name)
-{
-    return animationFrameGroupPrototypes.contains(name);
-}
-
-void SpritePrototype::setDefaultAnimationFrameLoop(const QString &name)
-{
-    if (!animationFrameGroupPrototypes.contains(name))
-        return;
-    if (defaultLoop != nullptr)
-    {
-        delete defaultLoop;
-        defaultLoop = nullptr;
-    }
-    defaultLoop = animationFrameGroupPrototypes[name].createLoop();
+	assert(defaultAnimation != nullptr);
+	Sprite sprite(this);
+	sprite.setZValue(defaultZValue);
+	sprite.setOffset(offset);
+	sprite.setAcceptHoverEvents(true);
+	return nullptr;
 }

@@ -1,75 +1,44 @@
 #ifndef GRAPHIC__SPRITE_H
 #define GRAPHIC__SPRITE_H
 
-#include "AnimationFrameGroup.h"
+#include <QGraphicsItem>
+#include "../util/ItemWithPrototype.h"
 
-#include <QSet>
-#include <QPoint>
-#include <QSize>
-#include <QPainter>
-#include <QQueue>
+#include "SpritePrototype.h"
 
-class SpritePrototype;
+#include "MoveAnimation.h"
 
-class Sprite
+#include <QMap>
+
+class Sprite : public QGraphicsPixmapItem, public ItemWithPrototype<Sprite, SpritePrototype>
 {
 private:
-	friend class GameMainWidget;
 	friend class SpritePrototype;
-	Sprite *parent;
-	QSet<Sprite *> children;
-	SpritePrototype *prototype;
-	QPoint position;
-	QPoint actualPosition;
-	QSize size;
-	int zOrder;
-	QQueue<AnimationFrameGroup *> animationFrameGroups;
-	bool visible;
-	int time;
-	AnimationFrame currentFrame;
+	friend class MoveAnimation;
+	friend class Animation;
 
-	Sprite(SpritePrototype *_prototype, QSize _size, int _zOrder, QPoint _position = { 0, 0 },
-		Sprite *_parent = nullptr, bool _visible = true);
+	Animation *currentAnimation;
+	Animation *defaultAnimation;
+	MoveAnimation *moveAnimation;
 
-	~Sprite();
+	QVariantMap dataMap;
 
-	void render(QPainter *painter);
-
-	bool onMouseHoverStart(bool leftButtonPressed, bool rightButtonPressed);
-	bool onMouseHoverEnd(bool leftButtonPressed, bool rightButtonPressed);
-	bool onMouseButtonPressed(bool isLeft);
-	bool onMouseButtonReleased(bool isLeft);
+	Sprite(const SpritePrototype *prototype);
 public:
-	QPoint getPosition() const { return position; }
-	QSize getSize() const { return size; }
-	int getZOrder() const { return zOrder; }
-	Sprite *getParent() { return parent; }
-	QSet<Sprite *> &getChildren() { return children; }
-	bool isVisible() { return visible; }
+	bool inAnimation();
+	const QString &currentAnimationName();
+	bool moving();
+	void moveTo(const QPoint &position, int duration);
+	void moveTo(const QPoint &position, double speed);
+	void stopMove();
+	void startAnimation(const QString &animationName);
+	void stopAnimation();
+	const QVariantMap &getDataMap() { return dataMap; }
 
-	void setPosition(const QPoint &position) { this->position = position; }
-	void setSize(const QSize &size) { this->size = size; }
-	void setVisible(bool visible) { this->visible = visible; }
-	void setParent(Sprite *parent);
-	void show() { visible = true; }
-	void hide() { visible = false; }
-
-	struct AnimationFrameGroupInfo
-	{
-		const QString &name;
-		bool isLoop;
-		bool operator==(const AnimationFrameGroupInfo &other)
-		{
-			return name == other.name && isLoop == other.isLoop;
-		}
-	};
-
-	void enqueueAnimationFrameGroup(const QString &name, bool isLoop);
-	void enqueueAnimationFrameGroup(AnimationFrameGroupInfo info);
-	void dequeueAnimationFrameGroup();
-
-	bool isAnimationFrameGroupQueueEmpty() { return animationFrameGroups.isEmpty(); }
-    AnimationFrameGroupInfo lastAnimationFrameGroup();
+	virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override final { prototype->hoverEnterEvent(this, event); }
+	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override final { prototype->hoverLeaveEvent(this, event); }
+	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) override final { prototype->mousePressEvent(this, event); }
+	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override final { prototype->mouseReleaseEvent(this, event); }
 };
 
 #endif // !GRAPHIC__SPRITE_H

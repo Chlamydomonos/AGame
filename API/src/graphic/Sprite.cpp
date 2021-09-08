@@ -1,109 +1,67 @@
 #include "Sprite.h"
 #include "SpritePrototype.h"
 
-Sprite::Sprite(SpritePrototype *_prototype, QSize _size, int _zOrder, QPoint _position, Sprite *_parent, bool _visible) :
-	prototype(_prototype), size(_size), zOrder(_zOrder), position(_position),
-	parent(_parent), animationFrameGroups(), actualPosition(), visible(_visible),
-	time(0), currentFrame(), children()
+#include <math.h>
+
+Sprite::Sprite(const SpritePrototype *prototype) : ItemWithPrototype<Sprite, SpritePrototype>(prototype), moveAnimation(nullptr)
 {
-	assert(parent == nullptr || parent->zOrder == this->zOrder);
-	if(parent != nullptr)
-		parent->children.insert(this);
+	defaultAnimation = prototype->defaultAnimation->create();
+	currentAnimation = defaultAnimation;
+	currentAnimation->start();
 }
 
-Sprite::~Sprite()
+bool Sprite::inAnimation()
 {
-	if (parent == nullptr)
-	{
-		for (auto i : children)
-			delete i;
-	}
-	else
-	{
-		for (auto i : children)
-		{
-			i->setParent(parent);
-		}
-	}
+	return currentAnimation != defaultAnimation;
 }
 
-void Sprite::render(QPainter *painter)
+const QString &Sprite::currentAnimationName()
 {
-	time++;
-	if (time == currentFrame.getTime())
-	{
-		time = 0;
-
-		if (animationFrameGroups.isEmpty())
-			currentFrame = prototype->defaultLoop->nextFrame();
-		else
-		{
-			currentFrame = animationFrameGroups.head()->nextFrame();
-			if (animationFrameGroups.head()->size() == 0)
-				delete animationFrameGroups.dequeue();
-		}
-	}
-	for (auto i : children)
-		i->render(painter);
-	if(visible)
-		painter->drawPixmap(QRect(actualPosition, size), currentFrame.getPixmap());
+	return currentAnimation->getName();
 }
 
-bool Sprite::onMouseHoverStart(bool leftButtonPressed, bool rightButtonPressed)
+bool Sprite::moving()
 {
-	return prototype->onMouseHoverStart(this, leftButtonPressed, rightButtonPressed);
+	return moveAnimation;
 }
 
-bool Sprite::onMouseHoverEnd(bool leftButtonPressed, bool rightButtonPressed)
+void Sprite::moveTo(const QPoint &position, int duration)
 {
-	return prototype->onMouseHoverEnd(this, leftButtonPressed, rightButtonPressed);
+	moveAnimation = new MoveAnimation(pos(), position, duration, this);
+	moveAnimation->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
-bool Sprite::onMouseButtonPressed(bool isLeft)
+void Sprite::moveTo(const QPoint &position, double speed)
 {
-	return prototype->onMouseButtonPressed(this, isLeft);
+	double xDistance = pos().x() - position.x();
+	double yDistance = pos().y() - position.y();
+	double distance = sqrt(xDistance * xDistance + yDistance * yDistance);
+	int time = distance / speed;
+	if (time <= 0)
+		time = 1;
+	moveTo(position, time);
 }
 
-bool Sprite::onMouseButtonReleased(bool isLeft)
+void Sprite::stopMove()
 {
-	return prototype->onMouseButtonReleased(this, isLeft);
+	moveAnimation->stop();
+	delete moveAnimation;
+	moveAnimation = nullptr;
 }
 
-void Sprite::setParent(Sprite *parent)
+void Sprite::startAnimation(const QString &animationName)
 {
-	assert(parent == nullptr || parent->zOrder == this->zOrder);
-	if(this->parent != nullptr)
-		this->parent->children.remove(this);
-
-	this->parent = parent;
-
-	if(parent != nullptr)
-		parent->children.insert(this);
-}
-
-void Sprite::enqueueAnimationFrameGroup(const QString &name, bool isLoop)
-{
-	if (!prototype->hasAnimationFrameGroupPrototype(name))
+	if (!prototype->animations.contains(animationName))
 		return;
-	if (isLoop)
-		animationFrameGroups.enqueue(prototype->animationFrameGroupPrototypes[name].createLoop());
-	else
-		animationFrameGroups.enqueue(prototype->animationFrameGroupPrototypes[name].createSequence());
+	currentAnimation = prototype->animations[animationName].create();
+	currentAnimation->bindSprite(this);
+	currentAnimation->start();
 }
 
-void Sprite::enqueueAnimationFrameGroup(AnimationFrameGroupInfo info)
+void Sprite::stopAnimation()
 {
-	enqueueAnimationFrameGroup(info.name, info.isLoop);
-}
-
-void Sprite::dequeueAnimationFrameGroup()
-{
-	delete animationFrameGroups.dequeue();
-}
-
-Sprite::AnimationFrameGroupInfo Sprite::lastAnimationFrameGroup()
-{
-	if(animationFrameGroups.isEmpty())
-		return { "", false };
-	return { animationFrameGroups.head()->getName(), dynamic_cast<AnimationFrameLoop *>(animationFrameGroups.head()) != nullptr };
+	if (currentAnimation == defaultAnimation)
+		return;
+	delete currentAnimation;
+	currentAnimation = defaultAnimation;
 }

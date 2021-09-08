@@ -1,57 +1,40 @@
 #ifndef GRAPHIC__SPRITE_PROTOTYPE_H
 #define GRAPHIC__SPRITE_PROTOTYPE_H
 
-#include "Sprite.h"
-#include "AnimationFrameGroupPrototype.h"
-
 #include <QMap>
 #include <QString>
+#include <QPixmap>
+#include "AnimationPrototype.h"
+#include "Animation.h"
 
-class SpritePrototype
+class Sprite;
+
+class SpritePrototype : public Prototype<Sprite>
 {
 private:
-	QMap<QString, QPixmap> pixmaps;
-	QMap<QString, AnimationFrameGroupPrototype> animationFrameGroupPrototypes;
-	QSize defaultSize;
-	int defaultZOrder;
-	AnimationFrameLoop *defaultLoop;
 	friend class Sprite;
+	QMap<QString, QPixmap> pixmaps;
+	QMap<QString, AnimationPrototype> animations;
+	AnimationPrototype *defaultAnimation;
+	QSize spriteSize;
+	double defaultZValue;
+	QPointF offset;
+protected:
+	SpritePrototype(const QSize &size, double _defaultZValue, const QPointF &_offset):
+		spriteSize(size), defaultZValue(_defaultZValue), offset(_offset),
+		pixmaps(), animations(), defaultAnimation(nullptr) {}
+	void loadPixmap(const QString & name, const QString & fileName);
+	AnimationFrame createAnimationFrame(const QString &pixmapName, int time = 16);
+	void createAnimation(const QString &name, const QVector<AnimationFrame> &frames, int loopCount);
+	void setDefaultAnimation(const QString &name);
+
+	virtual void hoverEnterEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->QGraphicsPixmapItem::hoverEnterEvent(event); }
+	virtual void hoverLeaveEvent(Sprite *sprite, QGraphicsSceneHoverEvent *event) const { sprite->QGraphicsPixmapItem::hoverLeaveEvent(event); }
+	virtual void mousePressEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->QGraphicsPixmapItem::mousePressEvent(event); }
+	virtual void mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const { sprite->QGraphicsPixmapItem::mouseReleaseEvent(event); }
+
 public:
-	SpritePrototype(QSize _defaultSize, int _defaultZOrder = 0):
-		defaultSize(_defaultSize), defaultZOrder(_defaultZOrder), defaultLoop(nullptr) {}
-
-	virtual ~SpritePrototype();
-
-	void loadPixmap(const QString &name, const QString &fileName);
-	void loadPixmapFromPrototype(const QString &name, SpritePrototype *prototype, const QString &pixmapName);
-
-	bool hasPixmap(const QString &name);
-	QPixmap getPixmap(const QString &name);
-
-	void createAnimationFrameGroupPrototype(const QString &name, const QVector<AnimationFrame> &frames);
-	bool hasAnimationFrameGroupPrototype(const QString &name);
-
-	void setDefaultAnimationFrameLoop(const QString &name);
-
-	Sprite *createSprite(QSize size, int zOrder, QPoint position = { 0, 0 }, Sprite *parent = nullptr)
-	{
-		return new Sprite(this, size, zOrder, position, parent);
-	}
-
-	Sprite *createSprite(QSize size, QPoint position = { 0, 0 }, Sprite *parent = nullptr)
-	{
-		return new Sprite(this, size, defaultZOrder, position, parent);
-	}
-
-	Sprite *createSprite(QPoint position = { 0, 0 }, Sprite *parent = nullptr)
-	{
-		return new Sprite(this, defaultSize, defaultZOrder, position, parent);
-	}
-
-	virtual bool onMouseHoverStart(Sprite *sprite, bool leftButtonPressed, bool rightButtonPressed) { return false; }
-	virtual bool onMouseHoverEnd(Sprite *sprite, bool leftButtonPressed, bool rightButtonPressed) { return false; }
-	virtual bool onMouseButtonPressed(Sprite *sprite, bool isLeft) { return false; }
-	virtual bool onMouseButtonReleased(Sprite *sprite, bool isLeft) { return false; }
+	virtual Sprite *create() const override final;
 };
 
 #endif // !GRAPHIC__SPRITE_PROTOTYPE_H

@@ -38,22 +38,25 @@
     <ClInclude Include="src\memory\SerializableObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphic\Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\SpritePrototype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\GameMainWidget.h">
+    <ClInclude Include="src\graphic\View.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\graphic\AnimationFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphic\AnimationFrameGroup.h">
+    <ClInclude Include="src\graphic\SpritePrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphic\AnimationFrameGroupPrototype.h">
+    <ClInclude Include="src\graphic\AnimationPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Prototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\ItemWithPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphic\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -70,13 +73,19 @@
     <ClCompile Include="src\MainWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphic\AnimationFrameGroup.cpp">
+    <ClCompile Include="src\graphic\SpritePrototype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphic\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphic\AnimationPrototype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphic\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphic\SpritePrototype.cpp">
+    <ClCompile Include="src\graphic\MoveAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -85,6 +94,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="src\MainWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\graphic\Animation.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\graphic\MoveAnimation.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

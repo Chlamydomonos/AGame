@@ -11,13 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="src\graphic\MoveAnimation.h" />
+    <ClInclude Include="src\util\ItemWithPrototype.h" />
+    <ClInclude Include="src\util\Prototype.h" />
     <QtMoc Include="src\MainWidget.h" />
+    <QtMoc Include="src\graphic\Animation.h" />
     <ClInclude Include="src\graphic\AnimationFrame.h" />
-    <ClInclude Include="src\graphic\AnimationFrameGroup.h" />
-    <ClInclude Include="src\graphic\AnimationFrameGroupPrototype.h" />
-    <ClInclude Include="src\graphic\GameMainWidget.h" />
+    <ClInclude Include="src\graphic\AnimationPrototype.h" />
     <ClInclude Include="src\graphic\Sprite.h" />
     <ClInclude Include="src\graphic\SpritePrototype.h" />
+    <ClInclude Include="src\graphic\View.h" />
     <ClInclude Include="src\memory\PacketBuffer.h" />
     <ClInclude Include="src\memory\registry\AllRegistries.h" />
     <ClInclude Include="src\memory\registry\Registry.h" />
@@ -26,7 +29,9 @@
     <QtMoc Include="src\network\SyncObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\graphic\AnimationFrameGroup.cpp" />
+    <ClCompile Include="src\graphic\Animation.cpp" />
+    <ClCompile Include="src\graphic\AnimationPrototype.cpp" />
+    <ClCompile Include="src\graphic\MoveAnimation.cpp" />
     <ClCompile Include="src\graphic\Sprite.cpp" />
     <ClCompile Include="src\graphic\SpritePrototype.cpp" />
     <ClCompile Include="src\main.cpp" />
