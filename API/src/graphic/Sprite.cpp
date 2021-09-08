@@ -6,8 +6,14 @@
 Sprite::Sprite(const SpritePrototype *prototype) : ItemWithPrototype<Sprite, SpritePrototype>(prototype), moveAnimation(nullptr)
 {
 	defaultAnimation = prototype->defaultAnimation->create();
+	defaultAnimation->bindSprite(this);
 	currentAnimation = defaultAnimation;
 	currentAnimation->start();
+}
+
+Sprite::~Sprite()
+{
+	delete defaultAnimation;
 }
 
 bool Sprite::inAnimation()
@@ -53,6 +59,10 @@ void Sprite::startAnimation(const QString &animationName)
 {
 	if (!prototype->animations.contains(animationName))
 		return;
+
+	stopAnimation();
+	defaultAnimation->stop();
+
 	currentAnimation = prototype->animations[animationName].create();
 	currentAnimation->bindSprite(this);
 	currentAnimation->start();
@@ -64,4 +74,5 @@ void Sprite::stopAnimation()
 		return;
 	delete currentAnimation;
 	currentAnimation = defaultAnimation;
+	defaultAnimation->start();
 }

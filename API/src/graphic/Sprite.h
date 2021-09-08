@@ -30,6 +30,7 @@ private:
 	void defaultMousePressEvent(QGraphicsSceneMouseEvent *event) { QGraphicsPixmapItem::mousePressEvent(event); }
 	void defaultMouseReleaseEvent(QGraphicsSceneMouseEvent *event) { QGraphicsPixmapItem::mouseReleaseEvent(event); }
 public:
+	~Sprite();
 	bool inAnimation();
 	const QString &currentAnimationName();
 	bool moving();
