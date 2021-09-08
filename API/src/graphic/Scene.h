@@ -11,7 +11,8 @@ private:
 	Sprite *_mouseGrabber;
 	bool inputEnabled;
 public:
-	Scene(QObject *parent = nullptr);
+	Scene(QObject *parent = nullptr) :
+		QGraphicsScene(parent), _mouseGrabber(nullptr), inputEnabled(true) {}
 	virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override final;
 	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) override final;
 	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override final;

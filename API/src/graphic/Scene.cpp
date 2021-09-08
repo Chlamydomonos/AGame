@@ -1,10 +1,5 @@
 #include "Scene.h"
 
-Scene::Scene(QObject *parent) :
-	QGraphicsScene(parent), _mouseGrabber(nullptr), inputEnabled(true)
-{
-}
-
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
 	if (inputEnabled)

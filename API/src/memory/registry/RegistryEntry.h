@@ -19,9 +19,9 @@ public:
 	RegistryEntry(const QString &_name) : name(_name)
 	{
 		if (!AllRegistries::getInstance()->hasRegistry<T>())
-			(new Registry<T>())->registerObject(this);
+			(new Registry<T>())->registerObject(static_cast<T*>(this));
 		else
-			AllRegistries::getInstance()->getRegistry<T>()->addEntry(this);
+			AllRegistries::getInstance()->getRegistry<T>()->registerObject(static_cast<T*>(this));
 	}
 	const QString &getName() const { return name; }
 };
