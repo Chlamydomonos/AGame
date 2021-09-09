@@ -5,11 +5,13 @@
 
 #include "../graphic/Sprite.h"
 
+#include "ServerUnitPrototype.h"
+#include "SyncUnitPrototype.h"
+
 class ServerUnit;
 class SyncUnit;
 class Skill;
-
-class UnitDefination : public RegistryEntry<UnitDefination>
+class UnitDefination : public RegistryEntry<UnitDefination>, public ServerUnitPrototype, public SyncUnitPrototype
 {
 protected:
 	double maxHP[3];

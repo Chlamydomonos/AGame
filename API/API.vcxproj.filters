@@ -65,9 +65,6 @@
     <ClInclude Include="src\unit\UnitDefination.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\unit\ServerUnit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\unit\SyncUnit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -116,6 +113,9 @@
     <ClInclude Include="src\map\ClientTilePrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\unit\ServerUnit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\memory\registry\AllRegistries.cpp">
@@ -151,9 +151,6 @@
     <ClCompile Include="src\graphic\View.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\unit\UnitDefination.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\network\NetworkHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -176,6 +173,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\map\TileDefination.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\unit\ServerUnitPrototype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\unit\ServerUnit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\unit\SyncUnit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

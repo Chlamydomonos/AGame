@@ -1,12 +1,11 @@
 #ifndef UNIT__SYNC_UNIT_PROTOTYPE_H
 #define UNIT__SUNC_UNIT_PROTOTYPE_H
 
-#include "UnitDefination.h"
-#include "../util/Prototype.h"
+#include "../network/SyncObjectProrotype.h"
 
 class SyncUnit;
 
-class SyncUnitPrototype : public Prototype<SyncUnit>
+class SyncUnitPrototype : public SyncObjectPrototype<SyncUnit>
 {
 
 };

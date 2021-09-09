@@ -70,7 +70,9 @@
     <ClCompile Include="src\network\NetworkHandler.cpp" />
     <ClCompile Include="src\network\SyncObject.cpp" />
     <ClCompile Include="src\network\SyncObjectProrotype.cpp" />
-    <ClCompile Include="src\unit\UnitDefination.cpp" />
+    <ClCompile Include="src\unit\ServerUnit.cpp" />
+    <ClCompile Include="src\unit\ServerUnitPrototype.cpp" />
+    <ClCompile Include="src\unit\SyncUnit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile" />

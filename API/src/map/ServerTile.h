@@ -55,6 +55,7 @@ public:
 
 	void initMap(ServerMap *map);
 	void bindSyncTile(SyncTile *syncTile);
+	SyncTile *getSyncTile(SyncTile *syncTile) { return syncTile; }
 };
 
 #endif // !MAP__SERVER_TILE_H
