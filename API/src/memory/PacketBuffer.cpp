@@ -7,7 +7,7 @@ QString PacketBuffer::readString()
     out.resize(len);
     for (size_t i = 0; i < len; i++)
     {
-        out[len - i - 1] = *(data.end());
+        out[len - i - 1] = data[data.length() - 1];
         data.pop_back();
     }
     return QString(out);

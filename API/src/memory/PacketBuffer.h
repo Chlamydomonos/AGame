@@ -37,7 +37,7 @@ public:
 		size_t len = sizeof(T);
 		for (size_t i = 0; i < len; i++)
 		{
-			buf[len - i - 1] = *(data.end());
+			buf[len - i - 1] = data[data.length() - 1];
 			data.pop_back();
 		}
 		return out;
