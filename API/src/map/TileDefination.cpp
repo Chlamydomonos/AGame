@@ -9,7 +9,7 @@ ServerTile *TileDefination::createServerTile(int x, int y, int z) const
 	syncTile->x = tile->x;
 	syncTile->y = tile->y;
 	syncTile->z = tile->z;
-	syncTile->notifyChange();
+
 	return tile;
 }
 
@@ -17,5 +17,6 @@ Sprite *TileDefination::createClientTile(SyncTile *tile) const
 {
 	Sprite *sprite = ClientTilePrototype::create();
 	tile->clientTile = sprite;
-	return nullptr;
+	sprite->getDataMap().insert("sync", (size_t)tile);
+	return sprite;
 }

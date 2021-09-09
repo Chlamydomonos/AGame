@@ -56,7 +56,7 @@ signals:
 protected:
 	Side side;
 private slots:
-	void notifyDataRecieve() { emit dataRecieved(); }
+	void notifyDataRecieve();
 	void notifyCreatedByNet() { emit createdByNet(); }
 	void sendSelf();
 private:

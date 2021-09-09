@@ -9,6 +9,12 @@ void SyncTile::updateClientTile()
 		clientTile->setPos(getClientPosition());
 }
 
+SyncTile::SyncTile(const SyncTilePrototype *prototype, Side _side) :
+	SyncObject(prototype, _side), x(0), y(0), z(0), highlight(0), clientTile(nullptr)
+{
+	connect(this, &SyncTile::dataRecieved, this, &SyncTile::updateClientTile);
+}
+
 void SyncTile::serialize(PacketBuffer *buffer)
 {
 	buffer->write<short>(x);

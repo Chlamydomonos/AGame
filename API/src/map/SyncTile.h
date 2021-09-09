@@ -21,8 +21,7 @@ private:
 private slots:
 	void updateClientTile();
 public:
-	SyncTile(const SyncTilePrototype *prototype, Side _side) : 
-		SyncObject(prototype, _side), x(0), y(0), z(0), highlight(0), clientTile(nullptr) {}
+	SyncTile(const SyncTilePrototype *prototype, Side _side);
 
 	virtual void serialize(PacketBuffer *buffer) override final;
 	virtual void deserialize(PacketBuffer *buffer) override final;
@@ -32,6 +31,7 @@ public:
 	short getZ() const { return z; }
 	char getHighlight() const { return highlight; }
 	void setHighlight(char highlight) { this->highlight = highlight; }
+	Sprite *getClientTile() const { return clientTile; }
 
 	QPoint getClientPosition() const;
 };

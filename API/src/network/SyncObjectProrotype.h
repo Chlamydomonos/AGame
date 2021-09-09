@@ -11,6 +11,7 @@ class SyncObject;
 class BaseSyncObjectPrototype
 {
 private:
+	friend class SyncObject;
 	const QString typeName;
 	friend class NetworkHandler;
 	template<class T>
@@ -20,6 +21,7 @@ protected:
 	virtual SyncObject *createObjFromNet(Side side) const = 0;
 	virtual SyncObject *createObjFromLocal(Side side) const = 0;
 	BaseSyncObjectPrototype(const QString &_typeName);
+	virtual void onDataRecieved(SyncObject *object) const = 0;
 public:
 	~BaseSyncObjectPrototype();
 };
@@ -31,7 +33,7 @@ private:
 	virtual SyncObject *createObjFromNet(Side side) const override final
 	{
 		auto out = static_cast<SyncObject *>(createFromNet(side));
-		out->side = (Side)(1 - (int)side);
+		out->side = side;
 		return out;
 	}
 
@@ -41,9 +43,14 @@ private:
 		out->side = side;
 		return out;
 	}
+	virtual void onDataRecieved(SyncObject *object) const
+	{
+		onDataRecieved(dynamic_cast<T *>(object));
+	}
 protected:
 	virtual T *createFromNet(Side side) const = 0;
 	virtual T *createFromLocal(Side side) const = 0;
+	virtual void onDataRecieved(T *object) const {};
 public:
 	SyncObjectPrototype() : BaseSyncObjectPrototype(typeid(T).name())
 	{

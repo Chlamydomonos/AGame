@@ -73,7 +73,6 @@ void NetworkHandler::testHasPendingDatagram()
 {
 	if (socket->hasPendingDatagrams())
 	{
-		qDebug() << "Data recieved from " << (side == Side::SERVER ? "Server" : "Client");
 		emit updateHasPendingDatagram();
 	}
 }
@@ -91,7 +90,7 @@ void NetworkHandler::newSyncObject(SyncObject *object, const QString &typeName)
 	buffer.write<bool>(true);
 
 	for (auto i : addresses)
-		qDebug() << socket->writeDatagram(buffer.getData(), buffer.dataLength(), i, 25566 - side);
+		socket->writeDatagram(buffer.getData(), buffer.dataLength(), i, 25566 - side);
 }
 
 void NetworkHandler::updateSyncObject(SyncObject *object)

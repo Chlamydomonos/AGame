@@ -6,6 +6,12 @@ SyncObject::SyncObject(const BaseSyncObjectPrototype *_prototype, Side _side, QO
 	connect(this, SIGNAL(changed()), this, SLOT(sendSelf()));
 }
 
+void SyncObject::notifyDataRecieve()
+{
+	prototype->onDataRecieved(this);
+	emit dataRecieved();
+}
+
 void SyncObject::sendSelf()
 {
 	if (side == Side::SERVER)
