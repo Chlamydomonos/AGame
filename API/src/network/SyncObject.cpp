@@ -22,4 +22,8 @@ void SyncObject::sendSelf()
 
 SyncObject::~SyncObject()
 {
+	if (side == Side::SERVER)
+		NetworkHandler::getServerInstance()->deleteSyncObject(this);
+	else
+		NetworkHandler::getClientInstance()->deleteSyncObject(this);
 }
