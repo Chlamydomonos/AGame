@@ -52,7 +52,7 @@ public:
 	Registry() : BaseRegistry(), map()
 	{
 		static_assert(std::is_convertible<T*, RegistryEntry<T>*>::value, "Cannot create registry without a registry entry");
-		AllRegistries::getInstance()->addRegistry<T>();
+		AllRegistries::getInstance()->addRegistry<T>(this);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public:
 		if (!hasObject(name))
 			return nullptr;
 
-		return map[name];
+		return static_cast<T*>(map[name]);
 	}
 };
 

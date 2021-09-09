@@ -20,23 +20,27 @@ class NetworkHandler : public QObject
 private:
 	friend class BaseSyncObjectPrototype;
 	friend class SendThread;
+	friend class MainWidget;
 	Side side;
-	static NetworkHandler serverInstance;
-	static NetworkHandler clientInstance;
+	static NetworkHandler *serverInstance;
+	static NetworkHandler *clientInstance;
 	static QMap<QString, BaseSyncObjectPrototype *> allSyncObjects;
 	QList<QHostAddress> addresses;
 	QUdpSocket *socket;
 	NetworkHandler(Side _side);
 private slots:
 	void readData();
+	void testHasPendingDatagram();
 public:
 	~NetworkHandler();
-	static NetworkHandler *getServerInstance() { return &serverInstance; }
-	static NetworkHandler *getClientInstance() { return &clientInstance; }
+	static NetworkHandler *getServerInstance() { return serverInstance; }
+	static NetworkHandler *getClientInstance() { return clientInstance; }
 public slots:
 	void newSyncObject(SyncObject *object, const QString &typeName);
 	void updateSyncObject(SyncObject *object);
 	void addConnection(QHostAddress address);
+signals:
+	void updateHasPendingDatagram();
 };
 
 #endif // !NETWORK__NETWORK_HANDLER_H

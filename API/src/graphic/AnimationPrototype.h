@@ -21,6 +21,7 @@ public:
 	AnimationPrototype() : loopCount(0), duration(0) {}
 	AnimationPrototype(const QVector<AnimationFrame> &frames, int _loopCount);
 	AnimationPrototype(const AnimationPrototype &obj);
+	~AnimationPrototype() {}
 
 	virtual Animation *create() const override final;
 

@@ -34,12 +34,12 @@ public:
 	bool inAnimation();
 	const QString &currentAnimationName();
 	bool moving();
-	void moveTo(const QPoint &position, int duration);
-	void moveTo(const QPoint &position, double speed);
+	void moveTo(const QPointF & position, int duration);
+	void moveTo(const QPointF & position, double speed);
 	void stopMove();
 	void startAnimation(const QString &animationName);
 	void stopAnimation();
-	const QVariantMap &getDataMap() { return dataMap; }
+	QVariantMap &getDataMap() { return dataMap; }
 
 	virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override final { prototype->hoverEnterEvent(this, event); }
 	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override final { prototype->hoverLeaveEvent(this, event); }

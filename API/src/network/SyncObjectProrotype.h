@@ -31,7 +31,7 @@ private:
 	virtual SyncObject *createObjFromNet(Side side) override final
 	{
 		auto out = static_cast<SyncObject *>(createFromNet(side));
-		out->side = 1 - side;
+		out->side = (Side)(1 - (int)side);
 		return out;
 	}
 
@@ -49,6 +49,7 @@ public:
 	{
 		static_assert(std::is_convertible<T *, SyncObject *>::value, "Cannot create sync object prototype without a sync object");
 	}
+	T *create(Side side) { return static_cast<T *>(BaseSyncObjectPrototype::create(side, typeid(T).name())); }
 };
 
 

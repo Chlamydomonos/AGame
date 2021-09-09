@@ -34,11 +34,11 @@ private:
 	AllRegistries() : map() {}
 
 	template<class T>
-	void addRegistry()
+	void addRegistry(Registry<T> *registry)
 	{
 		if (hasRegistry<T>())
 			return;
-		map.insert(typeid(Registry<T>).name(), static_cast<BaseRegistry *>(new Registry<T>()));
+		map.insert(typeid(Registry<T>).name(), static_cast<BaseRegistry *>(registry));
 	}
 public:
 	~AllRegistries();

@@ -39,13 +39,13 @@ bool Sprite::moving()
 	return moveAnimation;
 }
 
-void Sprite::moveTo(const QPoint &position, int duration)
+void Sprite::moveTo(const QPointF & position, int duration)
 {
 	moveAnimation = new MoveAnimation(pos(), position, duration, this);
 	moveAnimation->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
-void Sprite::moveTo(const QPoint &position, double speed)
+void Sprite::moveTo(const QPointF & position, double speed)
 {
 	double xDistance = pos().x() - position.x();
 	double yDistance = pos().y() - position.y();

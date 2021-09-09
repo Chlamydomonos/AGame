@@ -2,7 +2,7 @@
 
 SyncObject::SyncObject(QObject *parent) : SerializableObject(parent), connection(0), side(Side::SERVER)
 {
-	connect(this, SIGNAL(changed()), this, SLOT(sendSelf));
+	connect(this, SIGNAL(changed()), this, SLOT(sendSelf()));
 }
 
 void SyncObject::sendSelf()

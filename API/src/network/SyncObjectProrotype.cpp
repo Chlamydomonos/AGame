@@ -7,7 +7,7 @@ SyncObject *BaseSyncObjectPrototype::create(Side side, const QString & typeName)
         NetworkHandler::getServerInstance()->newSyncObject(out, typeName);
     else
         NetworkHandler::getClientInstance()->newSyncObject(out, typeName);
-    return nullptr;
+    return out;
 }
 
 BaseSyncObjectPrototype::BaseSyncObjectPrototype(const QString &_typeName) : typeName(_typeName)
