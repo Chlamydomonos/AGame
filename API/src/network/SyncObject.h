@@ -22,7 +22,8 @@ class SyncObject : public SerializableObject
 {
 
 	Q_OBJECT
-
+public:
+	SyncObject(QObject *parent = nullptr);
 public slots:
 	/**
 	 * @brief 标记对象为已更改。
