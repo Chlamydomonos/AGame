@@ -19,3 +19,7 @@ void SyncObject::sendSelf()
 	else
 		NetworkHandler::getClientInstance()->updateSyncObject(this);
 }
+
+SyncObject::~SyncObject()
+{
+}

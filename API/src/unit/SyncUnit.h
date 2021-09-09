@@ -3,6 +3,7 @@
 
 #include "SyncUnitPrototype.h"
 #include "../network/SyncObject.h"
+#include "SyncUnitPrototype.h"
 
 class SyncUnit : public SyncObject
 {

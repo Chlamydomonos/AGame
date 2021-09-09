@@ -39,6 +39,7 @@ public slots:
 	void newSyncObject(SyncObject *object, const QString &typeName);
 	void updateSyncObject(SyncObject *object);
 	void addConnection(QHostAddress address);
+	void deleteSyncObject(SyncObject *object);
 signals:
 	void updateHasPendingDatagram();
 	void objectCreatedFromNet(SyncObject *object);

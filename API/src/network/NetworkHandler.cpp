@@ -61,9 +61,20 @@ void NetworkHandler::readData()
 			}
 			else
 			{
-				SyncObject *temp = (SyncObject *)(buffer.read<size_t>());
-				temp->deserialize(&buffer);
-				temp->notifyDataRecieve();
+				bool isDelete = buffer.read<bool>();
+
+				if (isDelete)
+				{
+					SyncObject *temp = (SyncObject *)(buffer.read<size_t>());
+					temp->connection = 0;
+					delete temp;
+				}
+				else
+				{
+					SyncObject *temp = (SyncObject *)(buffer.read<size_t>());
+					temp->deserialize(&buffer);
+					temp->notifyDataRecieve();
+				}
 			}
 		}
 	}
@@ -100,6 +111,7 @@ void NetworkHandler::updateSyncObject(SyncObject *object)
 	buffer.write<size_t>(object->connection);
 	buffer.write<bool>(false);
 	buffer.write<bool>(false);
+	buffer.write<bool>(false);
 
 	for (auto i : addresses)
 		socket->writeDatagram(buffer.getData(), buffer.dataLength(), i, 25566 - side);
@@ -109,4 +121,16 @@ void NetworkHandler::addConnection(QHostAddress address)
 {
 	assert(addresses.length() <= 1 || side == Side::SERVER);
 	addresses.push_back(address);
+}
+
+void NetworkHandler::deleteSyncObject(SyncObject *object)
+{
+	PacketBuffer buffer{};
+	buffer.write<size_t>(object->connection);
+	buffer.write<bool>(true);
+	buffer.write<bool>(false);
+	buffer.write<bool>(false);
+
+	for (auto i : addresses)
+		socket->writeDatagram(buffer.getData(), buffer.dataLength(), i, 25566 - side);
 }
