@@ -8,12 +8,18 @@
 class ServerUnit : public QObject, public ItemWithPrototype<ServerUnit, ServerUnitPrototype>
 {
 private:
+	friend class ServerMap;
+	friend class ServerTile;
 	friend class SyncUnit;
 	friend class ServerUnitPrototype;
 	friend class UnitDefination;
 	SyncUnit *syncUnit;
+	ServerMap *map;
+	ServerTile *tileOn;
 public:
 	ServerUnit(const ServerUnitPrototype *prototype) : ItemWithPrototype(prototype) {}
+
+	void initMap(ServerMap *map);
 	void bindSyncUnit(SyncUnit *syncUnit);
 	SyncUnit *getSyncUnit() { return syncUnit; }
 };

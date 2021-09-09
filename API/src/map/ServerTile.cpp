@@ -19,6 +19,7 @@ void ServerTile::initMap(ServerMap *map)
 	neighbours[Direction::RIGHT] = map->getTile(x + Direction::RIGHT.x(), y + Direction::RIGHT.y(), z + Direction::RIGHT.z());
 	neighbours[Direction::FRONT] = map->getTile(x + Direction::FRONT.x(), y + Direction::FRONT.y(), z + Direction::FRONT.z());
 	neighbours[Direction::BACK] = map->getTile(x + Direction::BACK.x(), y + Direction::BACK.y(), z + Direction::BACK.z());
+	unitOn = map->getUnit(x, y, z);
 }
 
 void ServerTile::bindSyncTile(SyncTile *syncTile)

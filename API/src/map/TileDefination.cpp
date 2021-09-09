@@ -9,7 +9,6 @@ ServerTile *TileDefination::createServerTile(int x, int y, int z) const
 	syncTile->x = tile->x;
 	syncTile->y = tile->y;
 	syncTile->z = tile->z;
-
 	return tile;
 }
 

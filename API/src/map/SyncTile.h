@@ -2,8 +2,6 @@
 #define MAP__SYNC_TILE_H
 
 #include "../network/SyncObject.h"
-#include "../util/ItemWithPrototype.h"
-
 #include "SyncTilePrototype.h"
 
 class SyncTile : public SyncObject

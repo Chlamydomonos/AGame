@@ -38,14 +38,16 @@ private:
 	friend class ServerMap;
 	friend class ServerTilePrototype;
 	friend class TileDefination;
+	friend class ServerUnit;
 	short x;
 	short y;
 	short z;
 	QMap<Direction, ServerTile *>neighbours;
 	SyncTile *syncTile;
 	ServerMap *map;
+	ServerUnit *unitOn;
 	ServerTile(const ServerTilePrototype *prototpye) :
-		ItemWithPrototype(prototpye), x(0), y(0), z(0), syncTile(nullptr), map(nullptr) {}
+		ItemWithPrototype(prototpye), x(0), y(0), z(0), syncTile(nullptr), map(nullptr), unitOn(nullptr) {}
 public:
 	void setPosition(short x, short y, short z) { this->x = x; this->y = y; this->z = z; }
 

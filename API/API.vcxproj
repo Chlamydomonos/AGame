@@ -15,7 +15,7 @@
     <ClInclude Include="src\graphic\Scene.h" />
     <ClInclude Include="src\map\ClientTilePrototype.h" />
     <ClInclude Include="src\map\MapDefination.h" />
-    <ClInclude Include="src\map\ServerMap.h" />
+    <QtMoc Include="src\map\ServerMap.h" />
     <ClInclude Include="src\map\ServerMapPrototype.h" />
     <QtMoc Include="src\map\ServerTile.h" />
     <ClInclude Include="src\map\ServerTilePrototype.h" />
@@ -33,7 +33,7 @@
     <ClInclude Include="src\unit\Skill.h" />
     <ClInclude Include="src\unit\SyncUnit.h" />
     <ClInclude Include="src\unit\SyncUnitPrototype.h" />
-    <ClInclude Include="src\unit\UnitDefination.h" />
+    <QtMoc Include="src\unit\UnitDefination.h" />
     <ClInclude Include="src\util\ItemWithPrototype.h" />
     <ClInclude Include="src\util\Prototype.h" />
     <QtMoc Include="src\MainWidget.h" />
@@ -60,8 +60,11 @@
     <ClCompile Include="src\graphic\View.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainWidget.cpp" />
+    <ClCompile Include="src\map\ServerMap.cpp" />
     <ClCompile Include="src\map\ServerTile.cpp" />
     <ClCompile Include="src\map\ServerTilePrototype.cpp" />
+    <ClCompile Include="src\map\SyncMap.cpp" />
+    <ClCompile Include="src\map\SyncMapPrototype.cpp" />
     <ClCompile Include="src\map\SyncTile.cpp" />
     <ClCompile Include="src\map\SyncTilePrototype.cpp" />
     <ClCompile Include="src\map\TileDefination.cpp" />
@@ -73,8 +76,13 @@
     <ClCompile Include="src\unit\ServerUnit.cpp" />
     <ClCompile Include="src\unit\ServerUnitPrototype.cpp" />
     <ClCompile Include="src\unit\SyncUnit.cpp" />
+    <ClCompile Include="src\unit\SyncUnitPrototype.cpp" />
+    <ClCompile Include="src\unit\UnitDefination.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Doxyfile" />
     <None Include="src\README.md" />
   </ItemGroup>
