@@ -41,6 +41,7 @@ public slots:
 	void addConnection(QHostAddress address);
 signals:
 	void updateHasPendingDatagram();
+	void objectCreatedFromNet(SyncObject *object);
 };
 
 #endif // !NETWORK__NETWORK_HANDLER_H

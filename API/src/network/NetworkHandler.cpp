@@ -13,7 +13,7 @@ NetworkHandler::NetworkHandler(Side _side) : side(_side)
 	socket = new QUdpSocket(this);
 	socket->bind(QHostAddress::LocalHost, 25565 + side);
 	connect(socket, &QUdpSocket::readyRead, this, &NetworkHandler::readData);
-	connect(this, SIGNAL(updateHasPendingDatagram()), this, SLOT(readData));
+	connect(this, &NetworkHandler::updateHasPendingDatagram, this, &NetworkHandler::readData);
 	readData();
 	QTimer *timer = new QTimer(this);
 	timer->setInterval(20);
@@ -46,6 +46,8 @@ void NetworkHandler::readData()
 
 			for (auto i : addresses)
 				socket->writeDatagram(sendBuffer.getData(), sendBuffer.dataLength(), i, 25566 - side);
+
+			emit objectCreatedFromNet(obj);
 		}
 		else
 		{
@@ -55,6 +57,7 @@ void NetworkHandler::readData()
 			{
 				SyncObject *temp = (SyncObject *)(buffer.read<size_t>());
 				temp->connection = buffer.read<size_t>();
+				temp->notifyChange();
 			}
 			else
 			{
@@ -69,7 +72,10 @@ void NetworkHandler::readData()
 void NetworkHandler::testHasPendingDatagram()
 {
 	if (socket->hasPendingDatagrams())
+	{
+		qDebug() << "Data recieved from " << (side == Side::SERVER ? "Server" : "Client");
 		emit updateHasPendingDatagram();
+	}
 }
 
 NetworkHandler::~NetworkHandler()

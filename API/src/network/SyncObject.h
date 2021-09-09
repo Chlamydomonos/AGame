@@ -24,6 +24,9 @@ class SyncObject : public SerializableObject
 	Q_OBJECT
 public:
 	SyncObject(const BaseSyncObjectPrototype *_prototype, Side _side = Side::SERVER, QObject *parent = nullptr);
+
+	Side getSide() const { return side; }
+	const BaseSyncObjectPrototype *getPrototype() const { return prototype; }
 public slots:
 	/**
 	 * @brief 标记对象为已更改。
