@@ -88,6 +88,13 @@ public:
 	const char *getData() const;
 
 	/**
+	 * @brief 获取序列化数据的长度。
+	 * 
+	 * @return 全部数据的长度。
+	 */
+	const int dataLength() const { return data.length(); }
+
+	/**
 	 * @brief 在数据的末尾追加序列化的数据。
 	 * 
 	 * @param data 要追加的数据。

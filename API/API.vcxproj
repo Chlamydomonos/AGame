@@ -23,6 +23,9 @@
     <ClInclude Include="src\map\SyncTile.h" />
     <ClInclude Include="src\map\SyncTilePrototype.h" />
     <ClInclude Include="src\map\TileDefination.h" />
+    <QtMoc Include="src\network\NetworkHandler.h" />
+    <ClInclude Include="src\network\Side.h" />
+    <ClInclude Include="src\network\SyncObjectProrotype.h" />
     <ClInclude Include="src\unit\ServerUnit.h" />
     <ClInclude Include="src\unit\ServerUnitPrototype.h" />
     <ClInclude Include="src\unit\Skill.h" />
@@ -57,6 +60,8 @@
     <ClCompile Include="src\MainWidget.cpp" />
     <ClCompile Include="src\memory\PacketBuffer.cpp" />
     <ClCompile Include="src\memory\registry\AllRegistries.cpp" />
+    <ClCompile Include="src\network\NetworkHandler.cpp" />
+    <ClCompile Include="src\network\SyncObjectProrotype.cpp" />
     <ClCompile Include="src\unit\UnitDefination.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +96,7 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="QtSettings">
     <QtInstall>5.12.10_32bit</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;widgets;network</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'" Label="QtSettings">

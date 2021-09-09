@@ -2,6 +2,8 @@
 #define NETWORK__SYNC_OBJECT_H
 
 #include "../memory/SerializableObject.h"
+#include "../util/ItemWithPrototype.h"
+#include "SyncObjectProrotype.h"
 
 /**
 * @brief 同步对象，是所有需要在服务器与客户端之间同步的对象的基类。
@@ -40,8 +42,17 @@ signals:
 	 * @note deserialize() 方法在该信号发送后执行。
 	 */
 	void dataRecieved();
+
+	/**
+	 * @brief 对象通过网络创建后，该信号会发送。
+	 */
+	void createdByNet();
 private slots:
 	void notifyDataRecieve() { emit dataRecieved(); }
+	void notifyCreatedByNet() { emit createdByNet(); }
+private:
+	friend class NetworkHandler;
+	size_t connection;
 };
 
 #endif // !NETWORK__SYNC_OBJECT_H
