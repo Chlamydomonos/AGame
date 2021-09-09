@@ -13,19 +13,21 @@
   <ItemGroup>
     <QtMoc Include="src\graphic\MoveAnimation.h" />
     <ClInclude Include="src\graphic\Scene.h" />
+    <ClInclude Include="src\map\ClientTilePrototype.h" />
     <ClInclude Include="src\map\MapDefination.h" />
     <ClInclude Include="src\map\ServerMap.h" />
     <ClInclude Include="src\map\ServerMapPrototype.h" />
-    <ClInclude Include="src\map\ServerTile.h" />
+    <QtMoc Include="src\map\ServerTile.h" />
     <ClInclude Include="src\map\ServerTilePrototype.h" />
     <ClInclude Include="src\map\SyncMap.h" />
     <ClInclude Include="src\map\SyncMapPrototype.h" />
     <ClInclude Include="src\map\SyncTile.h" />
     <ClInclude Include="src\map\SyncTilePrototype.h" />
-    <ClInclude Include="src\map\TileDefination.h" />
+    <QtMoc Include="src\map\TileDefination.h" />
     <QtMoc Include="src\network\NetworkHandler.h" />
     <ClInclude Include="src\network\Side.h" />
     <ClInclude Include="src\network\SyncObjectProrotype.h" />
+    <ClInclude Include="src\unit\ClientUnitPrototype.h" />
     <ClInclude Include="src\unit\ServerUnit.h" />
     <ClInclude Include="src\unit\ServerUnitPrototype.h" />
     <ClInclude Include="src\unit\Skill.h" />
@@ -58,6 +60,11 @@
     <ClCompile Include="src\graphic\View.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainWidget.cpp" />
+    <ClCompile Include="src\map\ServerTile.cpp" />
+    <ClCompile Include="src\map\ServerTilePrototype.cpp" />
+    <ClCompile Include="src\map\SyncTile.cpp" />
+    <ClCompile Include="src\map\SyncTilePrototype.cpp" />
+    <ClCompile Include="src\map\TileDefination.cpp" />
     <ClCompile Include="src\memory\PacketBuffer.cpp" />
     <ClCompile Include="src\memory\registry\AllRegistries.cpp" />
     <ClCompile Include="src\network\NetworkHandler.cpp" />

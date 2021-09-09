@@ -1,6 +1,6 @@
 #include "SyncObjectProrotype.h"
 
-SyncObject *BaseSyncObjectPrototype::create(Side side, const QString & typeName)
+SyncObject *BaseSyncObjectPrototype::create(Side side, const QString & typeName) const
 {
     auto out = createObjFromLocal(side);
     if (side == Side::SERVER)

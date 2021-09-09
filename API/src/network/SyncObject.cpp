@@ -1,6 +1,7 @@
 #include "SyncObject.h"
 
-SyncObject::SyncObject(QObject *parent) : SerializableObject(parent), connection(0), side(Side::SERVER)
+SyncObject::SyncObject(const BaseSyncObjectPrototype *_prototype, Side _side, QObject *parent) :
+	SerializableObject(parent), connection(0), side(_side), prototype(_prototype)
 {
 	connect(this, SIGNAL(changed()), this, SLOT(sendSelf()));
 }

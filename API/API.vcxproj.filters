@@ -71,12 +71,6 @@
     <ClInclude Include="src\unit\SyncUnit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\map\TileDefination.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\map\ServerTile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\map\SyncTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -114,6 +108,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\network\SyncObjectProrotype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\unit\ClientUnitPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\map\ClientTilePrototype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -163,6 +163,21 @@
     <ClCompile Include="src\network\SyncObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\map\ServerTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map\ServerTilePrototype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map\SyncTilePrototype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map\SyncTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map\TileDefination.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\network\SyncObject.h">
@@ -178,6 +193,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="src\network\NetworkHandler.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\map\ServerTile.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\map\TileDefination.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

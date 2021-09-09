@@ -23,7 +23,7 @@ class SyncObject : public SerializableObject
 
 	Q_OBJECT
 public:
-	SyncObject(QObject *parent = nullptr);
+	SyncObject(const BaseSyncObjectPrototype *_prototype, Side _side = Side::SERVER, QObject *parent = nullptr);
 public slots:
 	/**
 	 * @brief 标记对象为已更改。
@@ -42,7 +42,7 @@ signals:
 	/**
 	 * @brief 从网络上接收到数据后，该信号会发送。
 	 * 
-	 * @note deserialize() 方法在该信号发送后执行。
+	 * @note deserialize() 方法在该信号发送前执行。
 	 */
 	void dataRecieved();
 
@@ -61,6 +61,7 @@ private:
 	template<class T>
 	friend class SyncObjectPrototype;
 	size_t connection;
+	const BaseSyncObjectPrototype *prototype;
 };
 
 #endif // !NETWORK__SYNC_OBJECT_H

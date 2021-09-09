@@ -59,8 +59,8 @@ void NetworkHandler::readData()
 			else
 			{
 				SyncObject *temp = (SyncObject *)(buffer.read<size_t>());
-				temp->notifyDataRecieve();
 				temp->deserialize(&buffer);
+				temp->notifyDataRecieve();
 			}
 		}
 	}

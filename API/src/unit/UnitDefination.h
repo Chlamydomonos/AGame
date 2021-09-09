@@ -7,6 +7,7 @@
 
 class ServerUnit;
 class SyncUnit;
+class Skill;
 
 class UnitDefination : public RegistryEntry<UnitDefination>
 {
@@ -20,6 +21,7 @@ protected:
 	int price;
 	int exp[2];
 	int deathExp[3];
+	Skill *skills[3];
 public:
 	UnitDefination(const QString &name) : RegistryEntry(name){}
 };
