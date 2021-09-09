@@ -61,6 +61,7 @@
     <ClCompile Include="src\memory\PacketBuffer.cpp" />
     <ClCompile Include="src\memory\registry\AllRegistries.cpp" />
     <ClCompile Include="src\network\NetworkHandler.cpp" />
+    <ClCompile Include="src\network\SyncObject.cpp" />
     <ClCompile Include="src\network\SyncObjectProrotype.cpp" />
     <ClCompile Include="src\unit\UnitDefination.cpp" />
   </ItemGroup>

@@ -24,7 +24,7 @@ void NetworkHandler::readData()
 	if (isNew)
 	{
 		QString typeName = buffer.readString();
-		SyncObject *obj = allSyncObjects[typeName]->createFromNet(side);
+		SyncObject *obj = allSyncObjects[typeName]->createObjFromNet(side);
 		obj->connection = buffer.read<size_t>();
 		obj->deserialize(&buffer);
 		obj->notifyCreatedByNet();

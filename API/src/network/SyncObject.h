@@ -4,6 +4,8 @@
 #include "../memory/SerializableObject.h"
 #include "../util/ItemWithPrototype.h"
 #include "SyncObjectProrotype.h"
+#include "NetworkHandler.h"
+#include "Side.h"
 
 /**
 * @brief 同步对象，是所有需要在服务器与客户端之间同步的对象的基类。
@@ -47,11 +49,16 @@ signals:
 	 * @brief 对象通过网络创建后，该信号会发送。
 	 */
 	void createdByNet();
+protected:
+	Side side;
 private slots:
 	void notifyDataRecieve() { emit dataRecieved(); }
 	void notifyCreatedByNet() { emit createdByNet(); }
+	void sendSelf();
 private:
 	friend class NetworkHandler;
+	template<class T>
+	friend class SyncObjectPrototype;
 	size_t connection;
 };
 
