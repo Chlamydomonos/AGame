@@ -66,7 +66,8 @@ void NetworkHandler::readData()
 				if (isDelete)
 				{
 					SyncObject *temp = (SyncObject *)(buffer.read<size_t>());
-					temp->connection = 0;
+					if(temp)
+						temp->connection = 0;
 					delete temp;
 				}
 				else

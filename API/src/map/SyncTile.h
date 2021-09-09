@@ -22,6 +22,7 @@ private slots:
 	void updateClientTile();
 public:
 	SyncTile(const SyncTilePrototype *prototype, Side _side);
+	~SyncTile();
 
 	virtual void serialize(PacketBuffer *buffer) override final;
 	virtual void deserialize(PacketBuffer *buffer) override final;

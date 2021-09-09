@@ -15,6 +15,12 @@ SyncTile::SyncTile(const SyncTilePrototype *prototype, Side _side) :
 	connect(this, &SyncTile::dataRecieved, this, &SyncTile::updateClientTile);
 }
 
+SyncTile::~SyncTile()
+{
+	if (side == Side::CLIENT)
+		delete clientTile;
+}
+
 void SyncTile::serialize(PacketBuffer *buffer)
 {
 	buffer->write<short>(x);
