@@ -34,3 +34,8 @@ void SyncUnit::deserialize(PacketBuffer *buffer)
 	y = buffer->read<short>();
 	x = buffer->read<short>();
 }
+
+QPoint SyncUnit::getClientPosition() const
+{
+	return QPoint(90 * x, 50 * x + 100 * z);
+}

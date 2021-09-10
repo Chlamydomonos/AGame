@@ -1,8 +1,6 @@
 #include "SyncTile.h"
 #include "../graphic/Sprite.h"
 
-#include <math.h>
-
 void SyncTile::updateClientTile()
 {
 	if (clientTile != nullptr)
@@ -41,5 +39,5 @@ void SyncTile::deserialize(PacketBuffer *buffer)
 
 QPoint SyncTile::getClientPosition() const
 {
-	return QPoint((int)(sqrt(3) * 60.0 * x), 50 * x + 100 * z);
+	return QPoint(90 * x, 50 * x + 100 * z);
 }
