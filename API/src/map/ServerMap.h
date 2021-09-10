@@ -14,6 +14,7 @@ private:
 	friend class ServerTile;
 	friend class SyncMap;
 	friend class ServerUnit;
+	friend class MapDefination;
 	QMap<long long, ServerTile *> tiles;
 	QMap<long long, ServerUnit *> units;
 	SyncMap *syncMap;

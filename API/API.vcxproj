@@ -30,6 +30,7 @@
     <QtMoc Include="src\network\NetworkHandler.h" />
     <ClInclude Include="src\network\Side.h" />
     <ClInclude Include="src\network\SyncObjectProrotype.h" />
+    <ClInclude Include="src\tiles\Ground.h" />
     <ClInclude Include="src\unit\ClientUnitPrototype.h" />
     <ClInclude Include="src\unit\ServerUnit.h" />
     <ClInclude Include="src\unit\ServerUnitPrototype.h" />
@@ -63,6 +64,7 @@
     <ClCompile Include="src\graphic\View.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainWidget.cpp" />
+    <ClCompile Include="src\map\MapDefination.cpp" />
     <ClCompile Include="src\map\ServerMap.cpp" />
     <ClCompile Include="src\map\ServerTile.cpp" />
     <ClCompile Include="src\map\ServerTilePrototype.cpp" />
