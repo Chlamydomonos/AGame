@@ -1,8 +1,8 @@
 #ifndef UNIT__SYNC_UNIT_H
 #define UNIT__SYNC_UNIT_H
 
-#include "SyncUnitPrototype.h"
 #include "../network/SyncObject.h"
+#include "SyncUnitPrototype.h"
 
 class SyncUnit : public SyncObject
 {
