@@ -19,7 +19,7 @@ private:
 	QMap<long long, ServerUnit *> units;
 	SyncMap *syncMap;
 public:
-	ServerMap(ServerMapPrototype *prototype) : ItemWithPrototype(prototype), syncMap(nullptr) {}
+	ServerMap(const ServerMapPrototype *prototype) : ItemWithPrototype(prototype), syncMap(nullptr) {}
 
 	void bindSyncMap(SyncMap *syncMap);
 	SyncMap *getSyncMap() const { return syncMap; }

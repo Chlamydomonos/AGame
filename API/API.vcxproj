@@ -31,6 +31,7 @@
     <ClInclude Include="src\network\Side.h" />
     <ClInclude Include="src\network\SyncObjectProrotype.h" />
     <ClInclude Include="src\tiles\Ground.h" />
+    <ClInclude Include="src\tiles\Water.h" />
     <ClInclude Include="src\unit\ClientUnitPrototype.h" />
     <ClInclude Include="src\unit\ServerUnit.h" />
     <ClInclude Include="src\unit\ServerUnitPrototype.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="src\MainWidget.cpp" />
     <ClCompile Include="src\map\MapDefination.cpp" />
     <ClCompile Include="src\map\ServerMap.cpp" />
+    <ClCompile Include="src\map\ServerMapPrototype.cpp" />
     <ClCompile Include="src\map\ServerTile.cpp" />
     <ClCompile Include="src\map\ServerTilePrototype.cpp" />
     <ClCompile Include="src\map\SyncMap.cpp" />
@@ -78,6 +80,8 @@
     <ClCompile Include="src\network\NetworkHandler.cpp" />
     <ClCompile Include="src\network\SyncObject.cpp" />
     <ClCompile Include="src\network\SyncObjectProrotype.cpp" />
+    <ClCompile Include="src\tiles\Ground.cpp" />
+    <ClCompile Include="src\tiles\Water.cpp" />
     <ClCompile Include="src\unit\ServerUnit.cpp" />
     <ClCompile Include="src\unit\ServerUnitPrototype.cpp" />
     <ClCompile Include="src\unit\SyncUnit.cpp" />
@@ -92,6 +96,7 @@
     <QtUic Include="src\MainWidget.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtRcc Include="resources\resource.qrc" />
     <QtRcc Include="src\MainWidget.qrc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

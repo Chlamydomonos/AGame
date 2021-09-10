@@ -5,7 +5,8 @@
 
 class Ground : public TileDefination
 {
-
+public:
+	Ground();
 };
 
 #endif // !TILES__GROUND_H

@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/pixmaps">
+        <file>ground.png</file>
+        <file>ground_green.png</file>
+        <file>ground_red.png</file>
+        <file>water1.png</file>
+        <file>water2.png</file>
+        <file>water3.png</file>
+    </qresource>
+</RCC>

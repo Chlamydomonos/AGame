@@ -122,6 +122,9 @@
     <ClInclude Include="src\tiles\Ground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\tiles\Water.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\memory\registry\AllRegistries.cpp">
@@ -208,6 +211,15 @@
     <ClCompile Include="src\map\MapDefination.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\tiles\Ground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map\ServerMapPrototype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tiles\Water.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\network\SyncObject.h">
@@ -249,6 +261,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="src\MainWidget.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <QtRcc Include="resources\resource.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
   </ItemGroup>

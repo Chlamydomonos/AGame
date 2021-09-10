@@ -7,7 +7,8 @@ class ServerMap;
 
 class ServerMapPrototype : public Prototype<ServerMap>
 {
-
+protected:
+	virtual ServerMap *create() const override final;
 };
 
 #endif // !MAP__SERVER_MAP_PROTOTYPE_H
