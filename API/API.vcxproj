@@ -12,6 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\graphic\MoveAnimation.h" />
+    <ClInclude Include="src\core\Client.h" />
+    <ClInclude Include="src\core\Game.h" />
+    <ClInclude Include="src\core\Server.h" />
     <ClInclude Include="src\graphic\Scene.h" />
     <ClInclude Include="src\map\ClientTilePrototype.h" />
     <ClInclude Include="src\map\MapDefination.h" />
@@ -80,9 +83,6 @@
     <ClCompile Include="src\unit\UnitDefination.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="Doxyfile" />
     <None Include="src\README.md" />
   </ItemGroup>
