@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="src\widgets\MapSelectWidget.h" />
+    <QtMoc Include="src\widgets\StartWidget.h" />
     <QtMoc Include="src\graphic\MoveAnimation.h" />
     <ClInclude Include="src\core\Client.h" />
     <ClInclude Include="src\core\Game.h" />
@@ -56,6 +58,9 @@
     <QtMoc Include="src\network\SyncObject.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\Client.cpp" />
+    <ClCompile Include="src\core\Game.cpp" />
+    <ClCompile Include="src\core\Server.cpp" />
     <ClCompile Include="src\graphic\Animation.cpp" />
     <ClCompile Include="src\graphic\AnimationPrototype.cpp" />
     <ClCompile Include="src\graphic\MoveAnimation.cpp" />
@@ -87,6 +92,8 @@
     <ClCompile Include="src\unit\SyncUnit.cpp" />
     <ClCompile Include="src\unit\SyncUnitPrototype.cpp" />
     <ClCompile Include="src\unit\UnitDefination.cpp" />
+    <ClCompile Include="src\widgets\MapSelectWidget.cpp" />
+    <ClCompile Include="src\widgets\StartWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile" />
@@ -94,6 +101,8 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\MainWidget.ui" />
+    <QtUic Include="src\widgets\MapSelectWidget.ui" />
+    <QtUic Include="src\widgets\StartWidget.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="resources\resource.qrc" />
@@ -147,6 +156,16 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\src\widgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\src\widgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>

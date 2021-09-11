@@ -19,7 +19,9 @@ class NetworkHandler : public QObject
 	Q_OBJECT
 private:
 	friend class BaseSyncObjectPrototype;
-	friend class SendThread;
+	friend class Game;
+	friend class Server;
+	friend class Client;
 	friend class MainWidget;
 	Side side;
 	static NetworkHandler *serverInstance;

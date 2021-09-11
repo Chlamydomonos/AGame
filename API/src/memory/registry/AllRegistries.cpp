@@ -1,6 +1,6 @@
 #include "AllRegistries.h"
 
-AllRegistries AllRegistries::instance{};
+AllRegistries *AllRegistries::instance{ nullptr };
 
 AllRegistries::~AllRegistries()
 {

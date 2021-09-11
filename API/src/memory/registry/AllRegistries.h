@@ -26,8 +26,9 @@ class AllRegistries
 private:
 	template<class T>
 	friend class Registry;
+	friend class Game;
 
-	static AllRegistries instance;
+	static AllRegistries *instance;
 
 	QMap<QString, BaseRegistry *> map;
 
@@ -43,7 +44,7 @@ private:
 public:
 	~AllRegistries();
 
-	static AllRegistries *getInstance() { return &instance; } ///< 获取注册系统实例。
+	static AllRegistries *getInstance() { return instance; } ///< 获取注册系统实例。
 
 	/// 判断类型 T 的注册表是否存在。
 	template<class T>
