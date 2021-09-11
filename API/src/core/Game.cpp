@@ -35,4 +35,5 @@ void Game::startClient()
 
 void Game::releaseMemory()
 {
+	delete AllRegistries::instance;
 }

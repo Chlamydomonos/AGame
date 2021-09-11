@@ -34,3 +34,24 @@ ServerUnit *ServerMap::getUnit(unsigned long long index)
 		return units[index];
 	return nullptr;
 }
+
+void ServerMap::setChosenTile(ServerTile *tile)
+{
+	if (chosenTile != nullptr && chosenTile != tile)
+	{
+		chosenTile->getSyncTile()->setChosen(false);
+		chosenTile->getSyncTile()->notifyChange();
+	}
+
+	chosenTile = tile;
+}
+
+void ServerMap::setChosenUnit(ServerUnit *unit)
+{
+	if (chosenUnit != nullptr && chosenUnit != unit)
+	{
+		chosenUnit->getSyncUnit()->setChosen(false);
+		chosenUnit->getSyncUnit()->notifyChange();
+	}
+	chosenUnit = unit; 
+}

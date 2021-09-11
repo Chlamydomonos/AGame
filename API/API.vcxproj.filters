@@ -131,6 +131,9 @@
     <ClInclude Include="src\util\PathFinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\units\Soldier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\memory\registry\AllRegistries.cpp">
@@ -247,6 +250,9 @@
     <ClCompile Include="src\util\PathFinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\units\Soldier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\network\SyncObject.h">
@@ -300,9 +306,6 @@
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="src\MainWidget.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
     <QtRcc Include="resources\resource.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>

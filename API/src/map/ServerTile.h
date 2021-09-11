@@ -21,8 +21,8 @@ public:
 	Direction(unsigned long long _value) : value(_value) {}
 	Direction(const Direction &obj) : value(obj.value) {}
 
-	short x() const { return (value & (0xffff << 4)) >> 4; }
-	short y() const { return (value & (0xffff << 2)) >> 2; }
+	short x() const { return (value & (0xffffLL << 32)) >> 32; }
+	short y() const { return (value & (0xffffLL << 16)) >> 16; }
 	short z() const { return value & 0xffff; }
 
 	bool operator==(const Direction &other) const { return value == other.value; }
@@ -57,7 +57,7 @@ public:
 
 	void initMap(ServerMap *map);
 	void bindSyncTile(SyncTile *syncTile);
-	SyncTile *getSyncTile(SyncTile *syncTile) { return syncTile; }
+	SyncTile *getSyncTile() const { return syncTile; }
 
 	const QMap<Direction, ServerTile *> &getNeighbours() const { return neighbours; }
 };

@@ -45,10 +45,30 @@ void TileDefination::onDataRecieved(SyncTile *object) const
 	}
 	else
 	{
+		auto ser = dynamic_cast<ServerTile *>(object->parent());
 		if (object->getChosen())
-		{
-			auto ser = dynamic_cast<ServerTile *>(object->parent());
 			ser->map->setChosenTile(ser);
+		else if (ser->map->getChosenTile() == ser)
+			ser->map->setChosenTile(nullptr);
+	}
+}
+
+void TileDefination::mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const
+{
+	auto tile = (SyncTile *)(sprite->getDataMap()["sync"].toInt());
+
+	if (Game::getInstance()->getClient()->getMap()->getCanChooseTile())
+	{
+		if (!tile->chosen)
+		{
+			tile->setChosen(true);
+			tile->notifyChange();
+		}
+		else
+		{
+			tile->setChosen(false);
+			tile->notifyChange();
 		}
 	}
+	ClientTilePrototype::mouseReleaseEvent(sprite, event);
 }

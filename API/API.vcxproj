@@ -35,6 +35,7 @@
     <ClInclude Include="src\network\SyncObjectProrotype.h" />
     <ClInclude Include="src\tiles\Ground.h" />
     <ClInclude Include="src\tiles\Water.h" />
+    <ClInclude Include="src\units\Soldier.h" />
     <ClInclude Include="src\unit\ClientUnitPrototype.h" />
     <ClInclude Include="src\unit\ServerUnit.h" />
     <ClInclude Include="src\unit\ServerUnitPrototype.h" />
@@ -90,6 +91,7 @@
     <ClCompile Include="src\network\SyncObjectProrotype.cpp" />
     <ClCompile Include="src\tiles\Ground.cpp" />
     <ClCompile Include="src\tiles\Water.cpp" />
+    <ClCompile Include="src\units\Soldier.cpp" />
     <ClCompile Include="src\unit\ServerUnit.cpp" />
     <ClCompile Include="src\unit\ServerUnitPrototype.cpp" />
     <ClCompile Include="src\unit\SyncUnit.cpp" />
@@ -111,7 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="resources\resource.qrc" />
-    <QtRcc Include="src\MainWidget.qrc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{84FF1317-DC7D-4AF2-BF44-EBF9ED44D2F4}</ProjectGuid>

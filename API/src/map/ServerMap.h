@@ -23,7 +23,9 @@ private:
 	SyncMap *syncMap;
 	PathFinder pathFinder;
 public:
-	ServerMap(const ServerMapPrototype *prototype) : ItemWithPrototype(prototype), syncMap(nullptr), pathFinder(this) {}
+	ServerMap(const ServerMapPrototype *prototype) : 
+		ItemWithPrototype(prototype), syncMap(nullptr), pathFinder(this),
+		chosenTile(nullptr), chosenUnit(nullptr){}
 
 	void bindSyncMap(SyncMap *syncMap);
 	SyncMap *getSyncMap() const { return syncMap; }
@@ -36,8 +38,8 @@ public:
 
 	ServerUnit *getChosenUnit() { return chosenUnit; }
 	ServerTile *getChosenTile() { return chosenTile; }
-	void setChosenTile(ServerTile *tile) { chosenTile = tile; }
-	void setChosenUnit(ServerUnit *unit) { chosenUnit = unit; }
+	void setChosenTile(ServerTile *tile);
+	void setChosenUnit(ServerUnit *unit);
 
 	PathFinder *getPathFinder() { return &pathFinder; }
 };

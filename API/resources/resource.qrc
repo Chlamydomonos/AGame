@@ -9,5 +9,17 @@
     </qresource>
     <qresource prefix="/maps">
         <file>testMap.map</file>
+        <file>soldier_blue/1.png</file>
+        <file>soldier_blue/2.png</file>
+        <file>soldier_blue/3.png</file>
+        <file>soldier_blue/4.png</file>
+        <file>soldier_blue/5.png</file>
+        <file>soldier_blue/6.png</file>
+        <file>soldier_blue/7.png</file>
+        <file>soldier_blue/8.png</file>
+        <file>soldier_blue/9.png</file>
+        <file>soldier_blue/10.png</file>
+        <file>soldier_blue/11.png</file>
+        <file>soldier_blue/12.png</file>
     </qresource>
 </RCC>

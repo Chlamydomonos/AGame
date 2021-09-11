@@ -1,7 +1,7 @@
 #include "SyncMap.h"
 
 SyncMap::SyncMap(const SyncMapPrototype *prototype, Side side) : 
-	SyncObject(prototype, side), currentRound(0), currentPlayer(0), player0Cash(0), player1Cash(0)
+	SyncObject(prototype, side), currentRound(0), currentPlayer(0), player0Cash(0), player1Cash(0), canInput(false), canChooseTile(false)
 {
 }
 

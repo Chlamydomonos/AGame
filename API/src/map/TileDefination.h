@@ -23,6 +23,8 @@ public:
 	Sprite *createClientTile(SyncTile *tile) const;
 
 	virtual void onDataRecieved(SyncTile *object) const override;
+
+	virtual void mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const override;
 };
 
 #endif // !MAP__TILE_DEFINATION_H

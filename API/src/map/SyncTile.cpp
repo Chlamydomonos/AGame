@@ -8,7 +8,7 @@ void SyncTile::updateClientTile()
 }
 
 SyncTile::SyncTile(const SyncTilePrototype *prototype, Side _side) :
-	SyncObject(prototype, _side), x(0), y(0), z(0), highlight(0), clientTile(nullptr)
+	SyncObject(prototype, _side), x(0), y(0), z(0), highlight(0), clientTile(nullptr), chosen(false)
 {
 	connect(this, &SyncTile::dataRecieved, this, &SyncTile::updateClientTile);
 }

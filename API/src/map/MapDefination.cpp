@@ -1,5 +1,6 @@
 #include "MapDefination.h"
 #include <QFile>
+#include "../core/Game.h"
 
 ServerMap *MapDefination::createMap()
 {
@@ -21,5 +22,16 @@ ServerMap *MapDefination::createMap()
 
     for (auto i : map->tiles)
         i->initMap(map);
+
+    SyncMap *sync = SyncMapPrototype::create(Side::SERVER);
+    sync->setParent(map);
     return map;
+}
+
+void MapDefination::onObjCreated(SyncMap *object) const
+{
+    if (object->getSide() == Side::CLIENT)
+    {
+        Game::getInstance()->getClient()->map = object;
+    }
 }

@@ -2,6 +2,7 @@
 
 Water::Water() : TileDefination("agame:water")
 {
+	walkable = false;
 	loadPixmap("1", ":/pixmaps/water1.png");
 	loadPixmap("2", ":/pixmaps/water2.png");
 	loadPixmap("3", ":/pixmaps/water3.png");

@@ -14,6 +14,8 @@ protected:
 public:
 	MapDefination(const QString &name) : RegistryEntry(name) {}
 	ServerMap *createMap();
+
+	virtual void onObjCreated(SyncMap *object) const override;
 };
 
 #endif // !MAP__MAP_DEFINATION_H
