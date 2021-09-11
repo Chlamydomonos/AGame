@@ -24,9 +24,9 @@ public:
 	void bindSyncMap(SyncMap *syncMap);
 	SyncMap *getSyncMap() const { return syncMap; }
 
-	ServerTile *getTile(short x, short y, short z) { return tiles[(((long long)x) << 4) | (((long long)y) << 2) | ((long long)z)]; }
+	ServerTile *getTile(short x, short y, short z);
 
-	ServerUnit *getUnit(short x, short y, short z) { return units[(((long long)x) << 4) | (((long long)y) << 2) | ((long long)z)]; }
+	ServerUnit *getUnit(short x, short y, short z);
 };
 
 #endif // !MAP__SERVER_MAP_H

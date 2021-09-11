@@ -18,6 +18,7 @@
     <ClInclude Include="src\core\Game.h" />
     <ClInclude Include="src\core\Server.h" />
     <ClInclude Include="src\graphic\Scene.h" />
+    <ClInclude Include="src\maps\Test.h" />
     <ClInclude Include="src\map\ClientTilePrototype.h" />
     <ClInclude Include="src\map\MapDefination.h" />
     <QtMoc Include="src\map\ServerMap.h" />
@@ -70,6 +71,7 @@
     <ClCompile Include="src\graphic\View.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainWidget.cpp" />
+    <ClCompile Include="src\maps\Test.cpp" />
     <ClCompile Include="src\map\MapDefination.cpp" />
     <ClCompile Include="src\map\ServerMap.cpp" />
     <ClCompile Include="src\map\ServerMapPrototype.cpp" />
@@ -97,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile" />
+    <None Include="resources\testMap.map" />
     <None Include="src\README.md" />
   </ItemGroup>
   <ItemGroup>

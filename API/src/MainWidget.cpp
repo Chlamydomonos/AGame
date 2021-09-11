@@ -9,6 +9,6 @@
 MainWidget::MainWidget(QWidget *parent)
     : QWidget(parent)
 {
-    AnimationPrototype test(QVector<QPixmap>());
     ui.setupUi(this);
+    setFixedSize(width(), height());
 }

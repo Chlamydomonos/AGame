@@ -7,6 +7,20 @@
 NetworkHandler *NetworkHandler::serverInstance{ nullptr };
 NetworkHandler *NetworkHandler::clientInstance{ nullptr };
 QMap<QString, BaseSyncObjectPrototype *> NetworkHandler::allSyncObjects{};
+QQueue<BaseSyncObjectPrototype *> NetworkHandler::objectsToRegister{};
+
+void NetworkHandler::registerSyncObjects()
+{
+	while (!objectsToRegister.isEmpty())
+	{
+		BaseSyncObjectPrototype *obj = objectsToRegister.dequeue();
+		BaseRegistryEntry *entry = dynamic_cast<BaseRegistryEntry *>(obj);
+		if (entry)
+			obj->typeName += "@!" + entry->getName();
+
+		allSyncObjects.insert(obj->typeName, obj);
+	}
+}
 
 NetworkHandler::NetworkHandler(Side _side) : side(_side)
 {
@@ -48,6 +62,7 @@ void NetworkHandler::readData()
 				socket->writeDatagram(sendBuffer.getData(), sendBuffer.dataLength(), i, 25566 - side);
 
 			emit objectCreatedFromNet(obj);
+			obj->prototype->onObjCreated(obj);
 		}
 		else
 		{
@@ -75,6 +90,7 @@ void NetworkHandler::readData()
 					SyncObject *temp = (SyncObject *)(buffer.read<size_t>());
 					temp->deserialize(&buffer);
 					temp->notifyDataRecieve();
+					temp->prototype->onDataRecieved(temp);
 				}
 			}
 		}

@@ -4,6 +4,7 @@
 #include "Side.h"
 #include <QObject>
 #include <QMap>
+#include <QQueue>
 
 #include <QUdpSocket>
 #include <QQueue>
@@ -23,10 +24,13 @@ private:
 	friend class Server;
 	friend class Client;
 	friend class MainWidget;
+	friend int main(int argc, char *argv[]);
 	Side side;
 	static NetworkHandler *serverInstance;
 	static NetworkHandler *clientInstance;
 	static QMap<QString, BaseSyncObjectPrototype *> allSyncObjects;
+	static QQueue<BaseSyncObjectPrototype *> objectsToRegister;
+	static void registerSyncObjects();
 	QList<QHostAddress> addresses;
 	QUdpSocket *socket;
 	NetworkHandler(Side _side);

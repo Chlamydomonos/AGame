@@ -3,6 +3,7 @@
 
 #include "../graphic/Scene.h"
 #include "../graphic/View.h"
+#include "../map/SyncMap.h"
 
 class Client : public QObject
 {

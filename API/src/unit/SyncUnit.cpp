@@ -7,6 +7,7 @@ SyncUnit::SyncUnit(const SyncUnitPrototype *prototype, Side side) : SyncObject(p
 
 void SyncUnit::serialize(PacketBuffer *buffer)
 {
+	buffer->write<bool>(player);
 	buffer->write<short>(x);
 	buffer->write<short>(y);
 	buffer->write<short>(z);
@@ -33,6 +34,7 @@ void SyncUnit::deserialize(PacketBuffer *buffer)
 	z = buffer->read<short>();
 	y = buffer->read<short>();
 	x = buffer->read<short>();
+	player = buffer->read<bool>();
 }
 
 QPoint SyncUnit::getClientPosition() const

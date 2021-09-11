@@ -10,6 +10,7 @@ private:
 	friend class UnitDefination;
 	friend class ServerUnit;
 	friend class Sprite;
+	bool player;
 	short x;
 	short y;
 	short z;
@@ -27,6 +28,7 @@ public:
 	void serialize(PacketBuffer *buffer);
 	void deserialize(PacketBuffer *buffer);
 
+	bool getPlayer() const{ return player; }
 	short getX() const { return x; }
 	short getY() const { return y; }
 	short getZ() const { return z; }
@@ -38,6 +40,7 @@ public:
 	int getExp() const { return exp; }
 	int getLevel() const { return level; }
 
+	bool setPlayer() { this->player = player; }
 	void setX(short x) { this->x = x; }
 	void setY(short y) { this->y = y; }
 	void setZ(short z) { this->z = z; }

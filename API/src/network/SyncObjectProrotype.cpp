@@ -1,6 +1,6 @@
 #include "SyncObjectProrotype.h"
 
-SyncObject *BaseSyncObjectPrototype::create(Side side, const QString & typeName) const
+SyncObject *BaseSyncObjectPrototype::create(Side side, int flag) const
 {
     auto out = createObjFromLocal(side);
     if (side == Side::SERVER)
@@ -10,9 +10,10 @@ SyncObject *BaseSyncObjectPrototype::create(Side side, const QString & typeName)
     return out;
 }
 
-BaseSyncObjectPrototype::BaseSyncObjectPrototype(const QString &_typeName) : typeName(_typeName)
+BaseSyncObjectPrototype::BaseSyncObjectPrototype(const QString &_typeName)
 {
-    NetworkHandler::allSyncObjects.insert(typeName, this);
+    typeName = _typeName;
+    NetworkHandler::objectsToRegister.enqueue(this);
 }
 
 BaseSyncObjectPrototype::~BaseSyncObjectPrototype()

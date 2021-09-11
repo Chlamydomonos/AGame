@@ -125,6 +125,9 @@
     <ClInclude Include="src\tiles\Water.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\maps\Test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\memory\registry\AllRegistries.cpp">
@@ -235,6 +238,9 @@
     <ClCompile Include="src\widgets\MapSelectWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\maps\Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\network\SyncObject.h">
@@ -274,6 +280,7 @@
   <ItemGroup>
     <None Include="Doxyfile" />
     <None Include="src\README.md" />
+    <None Include="resources\testMap.map" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\MainWidget.ui">

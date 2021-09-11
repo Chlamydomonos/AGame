@@ -14,7 +14,14 @@
  * 
  * RegistryEntry
  */
-class BaseRegistryEntry {};
+class BaseRegistryEntry
+{
+protected:
+	const QString name;
+public:
+	BaseRegistryEntry(const QString &_name) : name(_name) {}
+	const QString &getName() const { return name; }
+};
 
 /**
  * @brief 可注册项，是所有需要用注册系统自动管理内存的类的基类。
@@ -39,14 +46,6 @@ class BaseRegistryEntry {};
 template<class T>
 class RegistryEntry : public BaseRegistryEntry
 {
-protected:
-	/**
-	 * @brief 可注册项的名字。
-	 * 
-	 * 名字是注册系统储存可注册项的根据。因此，如果两个相同类的可注册项具有相同的名字，
-	 * 注册系统将不会注册第二个可注册项。这会导致内存泄露，后果十分危险。
-	 */
-	const QString name;
 public:
 
 	/**
@@ -54,15 +53,13 @@ public:
 	 * 
 	 * @param _name 名字，见 RegistryEntry::name 。
 	 */
-	RegistryEntry(const QString &_name) : name(_name)
+	RegistryEntry(const QString &name) : BaseRegistryEntry(name)
 	{
 		if (!AllRegistries::getInstance()->hasRegistry<T>())
 			(new Registry<T>())->registerObject(static_cast<T*>(this));
 		else
 			AllRegistries::getInstance()->getRegistry<T>()->registerObject(static_cast<T*>(this));
 	}
-
-	const QString &getName() const { return name; } ///< 获取名字。
 };
 
 #endif // !MEMORY__REGISTRY__REGISTRY_ENTRY_H

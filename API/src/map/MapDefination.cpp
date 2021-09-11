@@ -13,6 +13,8 @@ ServerMap *MapDefination::createMap()
         int y = QString(file.readLine()).toInt();
         int z = QString(file.readLine()).toInt();
         QString tileName = file.readLine();
+        tileName.remove('\r');
+        tileName.remove('\n');
         auto tile = AllRegistries::getInstance()->getRegistry<TileDefination>()->get(tileName)->createServerTile(x, y, z);
         map->tiles.insert(tile->index(), tile);
     }

@@ -53,7 +53,7 @@ public:
 
 	const ServerTilePrototype *getPrototype() const { return prototype; }
 
-	unsigned long long index() const { return (((unsigned long long) x) << 4) | (((unsigned long long) y) << 2) | ((unsigned long long) z); }
+	unsigned long long index() const { return (((unsigned long long) ((unsigned short)x)) << 32) | (((unsigned long long) ((unsigned short)y)) << 16) | ((unsigned long long) ((unsigned short)z)); }
 
 	void initMap(ServerMap *map);
 	void bindSyncTile(SyncTile *syncTile);

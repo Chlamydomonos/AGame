@@ -1,4 +1,14 @@
 #include "TileDefination.h"
+#include "../core/Game.h"
+
+void TileDefination::onObjCreated(SyncTile *obj) const
+{
+	if (obj->getSide() == Side::CLIENT)
+	{
+		Sprite *tile = createClientTile(obj);
+		Game::getInstance()->getClient()->getScene()->addItem(tile);
+	}
+}
 
 ServerTile *TileDefination::createServerTile(int x, int y, int z) const
 {

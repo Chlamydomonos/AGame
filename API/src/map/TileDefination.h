@@ -15,6 +15,7 @@ class TileDefination : public QObject, public RegistryEntry<TileDefination>, pub
 	Q_OBJECT
 protected:
 	bool walkable;
+	virtual void onObjCreated(SyncTile *obj) const override;
 public:
 	TileDefination(const QString &name) : RegistryEntry(name) {}
 	bool isWalkable() const { return walkable; }

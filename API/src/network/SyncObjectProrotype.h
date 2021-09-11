@@ -5,6 +5,7 @@
 #include "../util/Prototype.h"
 #include "Side.h"
 #include "NetworkHandler.h"
+#include "../memory/registry/RegistryEntry.h"
 
 class SyncObject;
 
@@ -12,16 +13,17 @@ class BaseSyncObjectPrototype
 {
 private:
 	friend class SyncObject;
-	const QString typeName;
+	QString typeName;
 	friend class NetworkHandler;
 	template<class T>
 	friend class SyncObjectPrototype;
-	SyncObject *create(Side side, const QString &typeName) const;
+	SyncObject *create(Side side, int flag) const;
 protected:
 	virtual SyncObject *createObjFromNet(Side side) const = 0;
 	virtual SyncObject *createObjFromLocal(Side side) const = 0;
 	BaseSyncObjectPrototype(const QString &_typeName);
 	virtual void onDataRecieved(SyncObject *object) const = 0;
+	virtual void onObjCreated(SyncObject *object) const = 0;
 public:
 	~BaseSyncObjectPrototype();
 };
@@ -47,16 +49,25 @@ private:
 	{
 		onDataRecieved(dynamic_cast<T *>(object));
 	}
+
+	virtual void onObjCreated(SyncObject *object) const override final
+	{
+		onObjCreated(dynamic_cast<T *>(object));
+	}
 protected:
 	virtual T *createFromNet(Side side) const = 0;
 	virtual T *createFromLocal(Side side) const = 0;
 	virtual void onDataRecieved(T *object) const {};
+	virtual void onObjCreated(T *object) const {};
 public:
 	SyncObjectPrototype() : BaseSyncObjectPrototype(typeid(T).name())
 	{
 		static_assert(std::is_convertible<T *, SyncObject *>::value, "Cannot create sync object prototype without a sync object");
 	}
-	T *create(Side side) const { return static_cast<T *>(BaseSyncObjectPrototype::create(side, typeid(T).name())); }
+	T *create(Side side) const
+	{ 
+		return static_cast<T *>(BaseSyncObjectPrototype::create(side, 0)); 
+	}
 };
 
 
