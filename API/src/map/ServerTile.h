@@ -58,6 +58,8 @@ public:
 	void initMap(ServerMap *map);
 	void bindSyncTile(SyncTile *syncTile);
 	SyncTile *getSyncTile(SyncTile *syncTile) { return syncTile; }
+
+	const QMap<Direction, ServerTile *> &getNeighbours() const { return neighbours; }
 };
 
 #endif // !MAP__SERVER_TILE_H

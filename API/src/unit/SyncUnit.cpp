@@ -8,6 +8,7 @@ SyncUnit::SyncUnit(const SyncUnitPrototype *prototype, Side side) : SyncObject(p
 void SyncUnit::serialize(PacketBuffer *buffer)
 {
 	buffer->write<bool>(player);
+	buffer->write<bool>(chosen);
 	buffer->write<short>(x);
 	buffer->write<short>(y);
 	buffer->write<short>(z);
@@ -34,6 +35,7 @@ void SyncUnit::deserialize(PacketBuffer *buffer)
 	z = buffer->read<short>();
 	y = buffer->read<short>();
 	x = buffer->read<short>();
+	chosen = buffer->read<bool>();
 	player = buffer->read<bool>();
 }
 

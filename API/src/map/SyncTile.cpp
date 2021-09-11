@@ -24,6 +24,7 @@ void SyncTile::serialize(PacketBuffer *buffer)
 	buffer->write<short>(x);
 	buffer->write<short>(y);
 	buffer->write<short>(z);
+	buffer->write<bool>(chosen);
 	buffer->write<char>(highlight);
 	SyncObject::serialize(buffer);
 }
@@ -32,6 +33,7 @@ void SyncTile::deserialize(PacketBuffer *buffer)
 {
 	SyncObject::deserialize(buffer);
 	highlight = buffer->read<char>();
+	chosen = buffer->read<bool>();
 	z = buffer->read<short>();
 	y = buffer->read<short>();
 	x = buffer->read<short>();

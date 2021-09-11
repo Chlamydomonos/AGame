@@ -14,6 +14,7 @@ private:
 	short x;
 	short y;
 	short z;
+	bool chosen;
 	char highlight;
 	Sprite *clientTile;
 private slots:
@@ -28,8 +29,13 @@ public:
 	short getX() const { return x; }
 	short getY() const { return y; }
 	short getZ() const { return z; }
+
+	bool getChosen() const { return chosen; }
 	char getHighlight() const { return highlight; }
+
+	void setChosen(bool chosen) { this->chosen = chosen; }
 	void setHighlight(char highlight) { this->highlight = highlight; }
+
 	Sprite *getClientTile() const { return clientTile; }
 
 	QPoint getClientPosition() const;

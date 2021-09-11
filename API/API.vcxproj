@@ -43,6 +43,7 @@
     <ClInclude Include="src\unit\SyncUnitPrototype.h" />
     <QtMoc Include="src\unit\UnitDefination.h" />
     <ClInclude Include="src\util\ItemWithPrototype.h" />
+    <ClInclude Include="src\util\PathFinder.h" />
     <ClInclude Include="src\util\Prototype.h" />
     <QtMoc Include="src\MainWidget.h" />
     <QtMoc Include="src\graphic\Animation.h" />
@@ -94,6 +95,7 @@
     <ClCompile Include="src\unit\SyncUnit.cpp" />
     <ClCompile Include="src\unit\SyncUnitPrototype.cpp" />
     <ClCompile Include="src\unit\UnitDefination.cpp" />
+    <ClCompile Include="src\util\PathFinder.cpp" />
     <ClCompile Include="src\widgets\MapSelectWidget.cpp" />
     <ClCompile Include="src\widgets\StartWidget.cpp" />
   </ItemGroup>

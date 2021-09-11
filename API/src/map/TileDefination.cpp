@@ -1,5 +1,6 @@
 #include "TileDefination.h"
 #include "../core/Game.h"
+#include "ServerMap.h"
 
 void TileDefination::onObjCreated(SyncTile *obj) const
 {
@@ -28,4 +29,26 @@ Sprite *TileDefination::createClientTile(SyncTile *tile) const
 	tile->clientTile = sprite;
 	sprite->getDataMap().insert("sync", (size_t)tile);
 	return sprite;
+}
+
+void TileDefination::onDataRecieved(SyncTile *object) const
+{
+	SyncTilePrototype::onDataRecieved(object);
+	if (object->side == Side::CLIENT)
+	{
+		if (object->highlight == 0)
+			object->clientTile->stopAnimation();
+		if (object->highlight == 1)
+			object->clientTile->startAnimation("green");
+		if (object->highlight == 2)
+			object->clientTile->startAnimation("red");
+	}
+	else
+	{
+		if (object->getChosen())
+		{
+			auto ser = dynamic_cast<ServerTile *>(object->parent());
+			ser->map->setChosenTile(ser);
+		}
+	}
 }

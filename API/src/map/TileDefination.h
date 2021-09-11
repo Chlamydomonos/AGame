@@ -21,6 +21,8 @@ public:
 	bool isWalkable() const { return walkable; }
 	ServerTile *createServerTile(int x, int y, int z) const;
 	Sprite *createClientTile(SyncTile *tile) const;
+
+	virtual void onDataRecieved(SyncTile *object) const override;
 };
 
 #endif // !MAP__TILE_DEFINATION_H
