@@ -1,6 +1,8 @@
 #include "SyncUnit.h"
 
-SyncUnit::SyncUnit(const SyncUnitPrototype *prototype, Side side) : SyncObject(prototype, side), clientUnit(nullptr)
+SyncUnit::SyncUnit(const SyncUnitPrototype *prototype, Side side) : SyncObject(prototype, side), clientUnit(nullptr),
+player(false), chosen(false), x(0), y(0), z(0), cd1(0), cd2(0), cd3(0), hp(0), mp(0), exp(0), level(0), moved(false),
+path()
 {
 	
 }
@@ -19,12 +21,31 @@ void SyncUnit::serialize(PacketBuffer *buffer)
 	buffer->write<double>(mp);
 	buffer->write<int>(exp);
 	buffer->write<int>(level);
+	buffer->write<bool>(movePressed);
+	buffer->write<bool>(moved);
+
+	for (int i = 0; i < path.length(); i++)
+	{
+		buffer->write<unsigned long long>(path[i]);
+	}
+	buffer->write<int>(path.length());
+
 	SyncObject::serialize(buffer);
 }
 
 void SyncUnit::deserialize(PacketBuffer *buffer)
 {
 	SyncObject::deserialize(buffer);
+	int len = buffer->read<int>();
+	path.resize(len);
+
+	for (int i = 0; i < len; i++)
+	{
+		path[len - i - 1] = buffer->read<unsigned long long>();
+	}
+
+	moved = buffer->read<bool>();
+	movePressed = buffer->read<bool>();
 	level = buffer->read<int>();
 	exp = buffer->read<int>();
 	mp = buffer->read<double>();
@@ -37,6 +58,25 @@ void SyncUnit::deserialize(PacketBuffer *buffer)
 	x = buffer->read<short>();
 	chosen = buffer->read<bool>();
 	player = buffer->read<bool>();
+}
+
+void SyncUnit::setPath(const QVector<unsigned long long> &path)
+{
+	this->path.resize(path.length());
+	for (int i = 0; i < path.length(); i++)
+		this->path[i] = path[i];
+}
+
+unsigned long long SyncUnit::getIndex() const
+{
+	return (((unsigned long long) ((unsigned short)x)) << 32) | (((unsigned long long) ((unsigned short)y)) << 16) | ((unsigned long long) ((unsigned short)z));
+}
+
+void SyncUnit::setIndex(unsigned long long index)
+{
+	x = (index & (0xffffLL << 32)) >> 32;
+	y = (index & (0xffffLL << 16)) >> 16;
+	z = index & 0xffff;
 }
 
 QPoint SyncUnit::getClientPosition() const

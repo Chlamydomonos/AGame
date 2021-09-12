@@ -92,7 +92,7 @@ public:
 	 * 
 	 * @return 全部数据的长度。
 	 */
-	const int dataLength() const { return data.length(); }
+	int dataLength() const { return data.length(); }
 
 	/**
 	 * @brief 在数据的末尾追加序列化的数据。

@@ -23,6 +23,11 @@ int main(int argc, char *argv[])
     NetworkHandler::getClientInstance()->addConnection(QHostAddress::LocalHost);
 
     game.loadMap();
+
+    game.getServer()->getMap()->createUnit("agame:soldier", 0, 0, 0, 0);
+
+    game.getServer()->getMap()->getSyncMap()->setCanInput(true);
+    game.getServer()->getMap()->getSyncMap()->notifyChange();
  
     w.show();
     auto returnCode = a.exec();

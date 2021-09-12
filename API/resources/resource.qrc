@@ -6,9 +6,6 @@
         <file>water1.png</file>
         <file>water2.png</file>
         <file>water3.png</file>
-    </qresource>
-    <qresource prefix="/maps">
-        <file>testMap.map</file>
         <file>soldier_blue/1.png</file>
         <file>soldier_blue/2.png</file>
         <file>soldier_blue/3.png</file>
@@ -21,5 +18,11 @@
         <file>soldier_blue/10.png</file>
         <file>soldier_blue/11.png</file>
         <file>soldier_blue/12.png</file>
+    </qresource>
+    <qresource prefix="/maps">
+        <file>testMap.map</file>
+    </qresource>
+    <qresource prefix="/stylesheets">
+        <file>UnitInfo.qss</file>
     </qresource>
 </RCC>

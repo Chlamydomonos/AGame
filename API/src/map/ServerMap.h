@@ -42,6 +42,12 @@ public:
 	void setChosenUnit(ServerUnit *unit);
 
 	PathFinder *getPathFinder() { return &pathFinder; }
+
+	void createUnit(const QString &name, bool player, short x, short y, short z);
+
+	void findUnitPath();
+
+	void moveUnit();
 };
 
 #endif // !MAP__SERVER_MAP_H

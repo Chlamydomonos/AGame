@@ -88,6 +88,8 @@ void NetworkHandler::readData()
 				else
 				{
 					SyncObject *temp = (SyncObject *)(buffer.read<size_t>());
+					if (!temp)
+						return;
 					temp->deserialize(&buffer);
 					temp->notifyDataRecieve();
 					temp->prototype->onDataRecieved(temp);

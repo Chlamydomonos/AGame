@@ -13,10 +13,16 @@ Sprite::Sprite(const SpritePrototype *prototype) : ItemWithPrototype<Sprite, Spr
 	currentAnimation->start();
 }
 
-void Sprite::defaultMousePressEvent(QGraphicsSceneMouseEvent *event)
+void Sprite::defaultHoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-	dynamic_cast<Scene *>(scene())->_mouseGrabber = this;
-	QGraphicsPixmapItem::mousePressEvent(event); 
+	dynamic_cast<Scene *>(scene())->_mouseGrabber.insert(this);
+	event->ignore(); 
+}
+
+void Sprite::defaultHoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+	dynamic_cast<Scene *>(scene())->_mouseGrabber.remove(this);
+	event->ignore(); 
 }
 
 Sprite::~Sprite()

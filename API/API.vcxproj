@@ -11,13 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\util\TargetFinder.h" />
+    <QtMoc Include="src\widgets\ingame\UnitInfo.h" />
     <QtMoc Include="src\widgets\MapSelectWidget.h" />
     <QtMoc Include="src\widgets\StartWidget.h" />
     <QtMoc Include="src\graphic\MoveAnimation.h" />
-    <ClInclude Include="src\core\Client.h" />
+    <QtMoc Include="src\core\Client.h" />
     <ClInclude Include="src\core\Game.h" />
+    <ClInclude Include="src\core\Loader.h" />
     <ClInclude Include="src\core\Server.h" />
     <ClInclude Include="src\graphic\Scene.h" />
+    <ClInclude Include="src\graphic\Widget.h" />
     <ClInclude Include="src\maps\Test.h" />
     <ClInclude Include="src\map\ClientTilePrototype.h" />
     <ClInclude Include="src\map\MapDefination.h" />
@@ -33,6 +37,7 @@
     <QtMoc Include="src\network\NetworkHandler.h" />
     <ClInclude Include="src\network\Side.h" />
     <ClInclude Include="src\network\SyncObjectProrotype.h" />
+    <ClInclude Include="src\skills\TestSkill.h" />
     <ClInclude Include="src\tiles\Ground.h" />
     <ClInclude Include="src\tiles\Water.h" />
     <ClInclude Include="src\units\Soldier.h" />
@@ -63,6 +68,7 @@
   <ItemGroup>
     <ClCompile Include="src\core\Client.cpp" />
     <ClCompile Include="src\core\Game.cpp" />
+    <ClCompile Include="src\core\Loader.cpp" />
     <ClCompile Include="src\core\Server.cpp" />
     <ClCompile Include="src\graphic\Animation.cpp" />
     <ClCompile Include="src\graphic\AnimationPrototype.cpp" />
@@ -71,6 +77,7 @@
     <ClCompile Include="src\graphic\Sprite.cpp" />
     <ClCompile Include="src\graphic\SpritePrototype.cpp" />
     <ClCompile Include="src\graphic\View.cpp" />
+    <ClCompile Include="src\graphic\Widget.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainWidget.cpp" />
     <ClCompile Include="src\maps\Test.cpp" />
@@ -89,6 +96,7 @@
     <ClCompile Include="src\network\NetworkHandler.cpp" />
     <ClCompile Include="src\network\SyncObject.cpp" />
     <ClCompile Include="src\network\SyncObjectProrotype.cpp" />
+    <ClCompile Include="src\skills\TestSkill.cpp" />
     <ClCompile Include="src\tiles\Ground.cpp" />
     <ClCompile Include="src\tiles\Water.cpp" />
     <ClCompile Include="src\units\Soldier.cpp" />
@@ -98,21 +106,30 @@
     <ClCompile Include="src\unit\SyncUnitPrototype.cpp" />
     <ClCompile Include="src\unit\UnitDefination.cpp" />
     <ClCompile Include="src\util\PathFinder.cpp" />
+    <ClCompile Include="src\util\TargetFinder.cpp" />
+    <ClCompile Include="src\widgets\ingame\UnitInfo.cpp" />
     <ClCompile Include="src\widgets\MapSelectWidget.cpp" />
     <ClCompile Include="src\widgets\StartWidget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile" />
     <None Include="resources\testMap.map" />
+    <None Include="resources\UnitInfo.qss" />
     <None Include="src\README.md" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\MainWidget.ui" />
+    <QtUic Include="src\widgets\ingame\UnitInfo.ui">
+      <DeploymentContent>false</DeploymentContent>
+    </QtUic>
     <QtUic Include="src\widgets\MapSelectWidget.ui" />
     <QtUic Include="src\widgets\StartWidget.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="resources\resource.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtTranslation Include="api_zh.ts" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{84FF1317-DC7D-4AF2-BF44-EBF9ED44D2F4}</ProjectGuid>
@@ -138,6 +155,8 @@
     <QtInstall>5.12.10_32bit</QtInstall>
     <QtModules>core;gui;widgets;network</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
+    <QtRunLUpdateOnBuild>true</QtRunLUpdateOnBuild>
+    <QMakeCodeLines>$(QMakeCodeLines)</QMakeCodeLines>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'" Label="QtSettings">
     <QtInstall>5.12.10_32bit</QtInstall>
@@ -164,12 +183,12 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\src\widgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\src\widgets;.\src\widgets\ingame;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\src\widgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\src\widgets;.\src\widgets\ingame;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="Configuration">

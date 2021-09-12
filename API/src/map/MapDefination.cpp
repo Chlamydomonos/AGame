@@ -24,7 +24,8 @@ ServerMap *MapDefination::createMap()
         i->initMap(map);
 
     SyncMap *sync = SyncMapPrototype::create(Side::SERVER);
-    sync->setParent(map);
+
+    map->bindSyncMap(sync);
     return map;
 }
 
@@ -33,5 +34,10 @@ void MapDefination::onObjCreated(SyncMap *object) const
     if (object->getSide() == Side::CLIENT)
     {
         Game::getInstance()->getClient()->map = object;
+        connect(object, &SyncMap::dataRecieved, Game::getInstance()->getClient(), &Client::updateCanInput);
     }
+}
+
+void MapDefination::onDataRecieved(SyncMap *object) const
+{
 }

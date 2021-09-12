@@ -62,9 +62,6 @@
     <ClInclude Include="src\graphic\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\unit\SyncUnit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\map\SyncTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -116,9 +113,6 @@
     <ClInclude Include="src\core\Server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\Client.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\tiles\Ground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -132,6 +126,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\units\Soldier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Loader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\unit\SyncUnit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\skills\TestSkill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphic\Widget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\TargetFinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -253,6 +262,21 @@
     <ClCompile Include="src\units\Soldier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\Loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\widgets\ingame\UnitInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\skills\TestSkill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphic\Widget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\TargetFinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\network\SyncObject.h">
@@ -288,11 +312,18 @@
     <QtMoc Include="src\widgets\MapSelectWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="src\core\Client.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="src\widgets\ingame\UnitInfo.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <None Include="Doxyfile" />
     <None Include="src\README.md" />
     <None Include="resources\testMap.map" />
+    <None Include="resources\UnitInfo.qss" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="src\MainWidget.ui">
@@ -304,10 +335,18 @@
     <QtUic Include="src\widgets\MapSelectWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="src\widgets\ingame\UnitInfo.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="resources\resource.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtTranslation Include="api_zh.ts">
+      <Filter>Translation Files</Filter>
+    </QtTranslation>
   </ItemGroup>
 </Project>

@@ -16,15 +16,14 @@ class TileDefination : public QObject, public RegistryEntry<TileDefination>, pub
 protected:
 	bool walkable;
 	virtual void onObjCreated(SyncTile *obj) const override;
+	virtual void onDataRecieved(SyncTile *object) const override;
+
+	virtual void mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const override;
 public:
 	TileDefination(const QString &name) : RegistryEntry(name) {}
 	bool isWalkable() const { return walkable; }
 	ServerTile *createServerTile(int x, int y, int z) const;
 	Sprite *createClientTile(SyncTile *tile) const;
-
-	virtual void onDataRecieved(SyncTile *object) const override;
-
-	virtual void mouseReleaseEvent(Sprite *sprite, QGraphicsSceneMouseEvent *event) const override;
 };
 
 #endif // !MAP__TILE_DEFINATION_H

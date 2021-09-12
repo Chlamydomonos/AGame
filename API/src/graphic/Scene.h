@@ -2,17 +2,19 @@
 #define GRAPHIC__SCENE_H
 
 #include <QGraphicsScene>
+#include <QSet>
 #include "Sprite.h"
 
 class Scene : public QGraphicsScene
 {
 private:
 	friend class Sprite;
-	Sprite *_mouseGrabber;
+	friend class Widget;
+	QSet<QGraphicsItem *> _mouseGrabber;
 	bool inputEnabled;
 public:
 	Scene(QObject *parent = nullptr) :
-		QGraphicsScene(parent), _mouseGrabber(nullptr), inputEnabled(true) {}
+		QGraphicsScene(parent), _mouseGrabber(), inputEnabled(true) {}
 	virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override final;
 	virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) override final;
 	virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override final;

@@ -22,7 +22,10 @@ private:
 	double mp;
 	int exp;
 	int level;
+	bool movePressed;
 	Sprite *clientUnit;
+	bool moved;
+	QVector<unsigned long long> path;
 public:
 	SyncUnit(const SyncUnitPrototype *prototype, Side side);
 
@@ -41,6 +44,9 @@ public:
 	double getMp() const { return mp; }
 	int getExp() const { return exp; }
 	int getLevel() const { return level; }
+	bool getMovePressed() const { return movePressed; }
+	bool getMoved() const { return moved; }
+	const QVector<unsigned long long> &getPath() const { return path; }
 
 	void setPlayer(bool player) { this->player = player; }
 	void setChosen(bool chosen) { this->chosen = chosen; }
@@ -54,6 +60,12 @@ public:
 	void setMp(double mp) { this->mp = mp; }
 	void setExp(int exp) { this->exp = exp; }
 	void setLevel(int level) { this->level = level; }
+	void setMovePressed(bool movePressed) { this->movePressed = movePressed; }
+	void setMoved(bool moved) { this->moved = moved; }
+	void setPath(const QVector<unsigned long long> &path);
+
+	unsigned long long getIndex() const;
+	void setIndex(unsigned long long index);
 
 	Sprite *getClientUnit() const { return clientUnit; }
 

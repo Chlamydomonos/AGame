@@ -25,10 +25,10 @@ private:
 
 	Sprite(const SpritePrototype *prototype);
 
-	void defaultHoverEnterEvent(QGraphicsSceneHoverEvent *event) { QGraphicsPixmapItem::hoverEnterEvent(event); }
-	void defaultHoverLeaveEvent(QGraphicsSceneHoverEvent *event) { QGraphicsPixmapItem::hoverLeaveEvent(event); }
-	void defaultMousePressEvent(QGraphicsSceneMouseEvent *event);
-	void defaultMouseReleaseEvent(QGraphicsSceneMouseEvent *event) { QGraphicsPixmapItem::mouseReleaseEvent(event); }
+	void defaultHoverEnterEvent(QGraphicsSceneHoverEvent *event);
+	void defaultHoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+	void defaultMousePressEvent(QGraphicsSceneMouseEvent *event) { event->ignore(); }
+	void defaultMouseReleaseEvent(QGraphicsSceneMouseEvent *event) { event->ignore(); }
 public:
 	~Sprite();
 	bool inAnimation();

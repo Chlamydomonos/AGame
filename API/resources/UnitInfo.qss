@@ -1,0 +1,25 @@
+QProgressBar
+{
+    text-align: center;
+    border-radius: 5px;
+}
+
+QProgressBar:chunk
+{
+    border-radius: 5px;
+}
+
+QProgressBar#hpBar::chunk
+{
+    background-color: red;
+}
+
+QProgressBar#mpBar::chunk
+{
+    background-color: dodgerblue;
+}
+
+QProgressBar#expBar::chunk
+{
+    background-color: lightblue;
+}

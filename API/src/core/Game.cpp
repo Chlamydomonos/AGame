@@ -1,8 +1,6 @@
 #include "Game.h"
 #include "../memory/registry/AllRegistries.h"
-#include "../tiles/Ground.h"
-#include "../tiles/Water.h"
-#include "../maps/Test.h"
+#include "Loader.h"
 
 Game *Game::instance{ nullptr };
 
@@ -18,9 +16,7 @@ void Game::loadMap()
 
 void Game::loadItems()
 {
-	new Ground();
-	new Water();
-	new Test();
+	Loader::load();
 }
 
 void Game::startServer()
